@@ -25,7 +25,7 @@ class Chart extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: FitnessAppTheme.defaultPadding),
+                SizedBox(height: AppTheme.defaultPadding),
                 Text(
                   "16",
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
@@ -46,7 +46,7 @@ class Chart extends StatelessWidget {
 
 List<PieChartSectionData> paiChartSelectionData = [
   PieChartSectionData(
-    color: FitnessAppTheme.primaryColor,
+    color: AppTheme.primaryColor,
     value: 3,
     showTitle: false,
     radius: 25,
@@ -70,7 +70,7 @@ List<PieChartSectionData> paiChartSelectionData = [
     radius: 16,
   ),
   PieChartSectionData(
-    color: FitnessAppTheme.primaryColor.withOpacity(0.1),
+    color: AppTheme.primaryColor.withOpacity(0.1),
     value: 4,
     showTitle: false,
     radius: 13,

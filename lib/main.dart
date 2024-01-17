@@ -38,10 +38,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Admin Panel',
       theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: FitnessAppTheme.bgColor,
+        scaffoldBackgroundColor: AppTheme.bgColor,
         textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
             .apply(bodyColor: Colors.white),
-        canvasColor: FitnessAppTheme.secondaryColor,
+        canvasColor: AppTheme.secondaryColor,
       ),
       initialRoute: '/home',
       routes: <String, WidgetBuilder>{

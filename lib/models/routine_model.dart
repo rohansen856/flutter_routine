@@ -37,7 +37,7 @@ List demoMyFiles = [
     prof: "1328",
     svgSrc: "assets/icons/Documents.svg",
     timings: "1.9GB",
-    color: FitnessAppTheme.primaryColor,
+    color: AppTheme.primaryColor,
     percentage: 35,
   ),
   RoutineInfo(
@@ -74,5 +74,5 @@ final List<String> svgLogos = [
 ];
 
 final List<Color> cardColors = [
-  FitnessAppTheme.primaryColor, Color(0xFFFFA113), Color(0xFFA4CDFF), Color(0xFF007EE5),
+  AppTheme.primaryColor, Color(0xFFFFA113), Color(0xFFA4CDFF), Color(0xFF007EE5),
 ];

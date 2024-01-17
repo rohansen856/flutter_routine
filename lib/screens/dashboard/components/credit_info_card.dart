@@ -16,12 +16,12 @@ class StorageInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: FitnessAppTheme.defaultPadding),
-      padding: EdgeInsets.all(FitnessAppTheme.defaultPadding),
+      margin: EdgeInsets.only(top: AppTheme.defaultPadding),
+      padding: EdgeInsets.all(AppTheme.defaultPadding),
       decoration: BoxDecoration(
-        border: Border.all(width: 2, color: FitnessAppTheme.primaryColor.withOpacity(0.15)),
+        border: Border.all(width: 2, color: AppTheme.primaryColor.withOpacity(0.15)),
         borderRadius: const BorderRadius.all(
-          Radius.circular(FitnessAppTheme.defaultPadding),
+          Radius.circular(AppTheme.defaultPadding),
         ),
       ),
       child: Row(
@@ -33,7 +33,7 @@ class StorageInfoCard extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: FitnessAppTheme.defaultPadding),
+              padding: const EdgeInsets.symmetric(horizontal: AppTheme.defaultPadding),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

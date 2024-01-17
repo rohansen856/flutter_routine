@@ -12,11 +12,11 @@ class DashboardScreen extends StatelessWidget {
     return SafeArea(
       child: SingleChildScrollView(
         primary: false,
-        padding: EdgeInsets.all(FitnessAppTheme.defaultPadding),
+        padding: EdgeInsets.all(AppTheme.defaultPadding),
         child: Column(
           children: [
             Header(),
-            SizedBox(height: FitnessAppTheme.defaultPadding),
+            SizedBox(height: AppTheme.defaultPadding),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -25,7 +25,7 @@ class DashboardScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       MyFiles(),
-                      SizedBox(height: FitnessAppTheme.defaultPadding),
+                      SizedBox(height: AppTheme.defaultPadding),
                       // RecentFiles(),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,13 +38,13 @@ class DashboardScreen extends StatelessWidget {
                         ],
                       ),
                       if (Responsive.isMobile(context))
-                        SizedBox(height: FitnessAppTheme.defaultPadding),
+                        SizedBox(height: AppTheme.defaultPadding),
                       if (Responsive.isMobile(context)) StorageDetails(),
                     ],
                   ),
                 ),
                 if (!Responsive.isMobile(context))
-                  SizedBox(width: FitnessAppTheme.defaultPadding),
+                  SizedBox(width: AppTheme.defaultPadding),
                 // On Mobile means if the screen is less than 850 we don't want to show it
                 if (!Responsive.isMobile(context))
                   Expanded(

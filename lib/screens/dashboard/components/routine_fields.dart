@@ -3,7 +3,7 @@ import 'package:admin/models/routine_model.dart';
 import 'package:admin/responsive.dart';
 import 'package:admin/theme/theme_data.dart';
 import 'package:flutter/material.dart';
-import 'file_info_card.dart';
+import 'routine_info_card.dart';
 
 class MyFiles extends StatefulWidget {
 
@@ -12,6 +12,7 @@ class MyFiles extends StatefulWidget {
 }
 
 class _MyFilesState extends State<MyFiles> {
+  List<String> weekdays = ['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
   @override
   Widget build(BuildContext context) {
@@ -28,18 +29,18 @@ class _MyFilesState extends State<MyFiles> {
             ElevatedButton.icon(
               style: TextButton.styleFrom(
                 padding: EdgeInsets.symmetric(
-                  horizontal: FitnessAppTheme.defaultPadding * 1.5,
+                  horizontal: AppTheme.defaultPadding * 1.5,
                   vertical:
-                      FitnessAppTheme.defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
+                      AppTheme.defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
                 ),
               ),
               onPressed: () {},
-              icon: Icon(Icons.add),
-              label: Text("Add New"),
+              icon: Icon(Icons.calendar_today_rounded),
+              label: Text(weekdays[DateTime.now().weekday]),
             ),
           ],
         ),
-        SizedBox(height: FitnessAppTheme.defaultPadding),
+        SizedBox(height: AppTheme.defaultPadding),
         Responsive(
           mobile: FileInfoCardGridView(
             crossAxisCount: _size.width < 650 ? 2 : 4,
@@ -102,14 +103,24 @@ class _FileInfoCardGridViewState extends State<FileInfoCardGridView> {
 
   @override
   Widget build(BuildContext context) {
-    return allData.length<=0? CircularProgressIndicator(): GridView.builder(
+    return allData.length<=0
+    ? Container(
+      height: 100,
+      width: double.maxFinite,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+        color:  AppTheme.secondaryColor,
+      ),
+      child: Center(child: CircularProgressIndicator()),
+    )
+    : GridView.builder(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: allData.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: widget.crossAxisCount,
-        crossAxisSpacing: FitnessAppTheme.defaultPadding,
-        mainAxisSpacing: FitnessAppTheme.defaultPadding,
+        crossAxisSpacing: AppTheme.defaultPadding,
+        mainAxisSpacing: AppTheme.defaultPadding,
         childAspectRatio: widget.childAspectRatio,
       ),
       itemBuilder: (context, index) => FileInfoCard(info: allData[index]),

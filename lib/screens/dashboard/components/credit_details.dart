@@ -11,9 +11,9 @@ class StorageDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(FitnessAppTheme.defaultPadding),
+      padding: EdgeInsets.all(AppTheme.defaultPadding),
       decoration: BoxDecoration(
-        color: FitnessAppTheme.secondaryColor,
+        color: AppTheme.secondaryColor,
         borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: Column(
@@ -26,7 +26,7 @@ class StorageDetails extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
-          SizedBox(height: FitnessAppTheme.defaultPadding),
+          SizedBox(height: AppTheme.defaultPadding),
           Chart(),
           StorageInfoCard(
             svgSrc: "assets/icons/Documents.svg",

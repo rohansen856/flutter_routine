@@ -1,7 +1,8 @@
 class Settings{
-  late String? sem, mess;
+  late String? group, sem, mess;
 
   Settings({
+    this.group,
     this.sem,
     this.mess
   });
