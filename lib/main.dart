@@ -1,5 +1,6 @@
 import 'package:admin/constants.dart';
 import 'package:admin/controllers/MenuAppController.dart';
+import 'package:admin/database/routine_database.dart';
 import 'package:admin/screens/auth/auth_screen.dart';
 import 'package:admin/screens/auth/splash_screen.dart';
 import 'package:admin/screens/main/main_screen.dart';
@@ -21,6 +22,8 @@ Future<void> main() async{
     url: supabaseUrl,
     anonKey: supabaseAnonKey,
   );
+
+  await RoutineDatabase.initDatabase();
 
   runApp(MyApp());
 }
