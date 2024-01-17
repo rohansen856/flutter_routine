@@ -1,9 +1,9 @@
-import 'package:admin/constants.dart';
 import 'package:admin/controllers/MenuAppController.dart';
 import 'package:admin/database/routine_database.dart';
 import 'package:admin/screens/auth/auth_screen.dart';
 import 'package:admin/screens/auth/splash_screen.dart';
 import 'package:admin/screens/main/main_screen.dart';
+import 'package:admin/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -38,10 +38,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Admin Panel',
       theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: bgColor,
+        scaffoldBackgroundColor: FitnessAppTheme.bgColor,
         textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
             .apply(bodyColor: Colors.white),
-        canvasColor: secondaryColor,
+        canvasColor: FitnessAppTheme.secondaryColor,
       ),
       initialRoute: '/home',
       routes: <String, WidgetBuilder>{

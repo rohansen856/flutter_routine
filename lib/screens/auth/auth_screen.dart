@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:admin/constants.dart';
+import 'package:admin/theme/theme_data.dart';
 import 'package:gap/gap.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -76,7 +76,7 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: secondaryColor,
+      backgroundColor: FitnessAppTheme.secondaryColor,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,

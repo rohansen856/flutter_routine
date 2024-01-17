@@ -1,10 +1,9 @@
 import 'package:admin/controllers/MenuAppController.dart';
 import 'package:admin/responsive.dart';
+import 'package:admin/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-
-import '../../../constants.dart';
 
 class Header extends StatelessWidget {
   const Header({
@@ -43,13 +42,13 @@ class ProfileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 62,
-      margin: EdgeInsets.only(left: defaultPadding),
+      margin: EdgeInsets.only(left: FitnessAppTheme.defaultPadding),
       padding: EdgeInsets.symmetric(
-        horizontal: defaultPadding,
-        vertical: defaultPadding / 2,
+        horizontal: FitnessAppTheme.defaultPadding,
+        vertical: FitnessAppTheme.defaultPadding / 2,
       ),
       decoration: BoxDecoration(
-        color: secondaryColor,
+        color: FitnessAppTheme.secondaryColor,
         borderRadius: const BorderRadius.all(Radius.circular(10)),
         border: Border.all(color: Colors.white10),
       ),
@@ -59,11 +58,11 @@ class ProfileCard extends StatelessWidget {
           //   "assets/images/profile_pic.png",
           //   height: 38,
           // ),
-          Icon(Icons.verified_user, color: primaryColor,size: 30),
+          Icon(Icons.verified_user, color: FitnessAppTheme.primaryColor,size: 30),
           if (!Responsive.isMobile(context))
             Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
+                  const EdgeInsets.symmetric(horizontal: FitnessAppTheme.defaultPadding / 2),
               child: Text("Angelina Jolie"),
             ),
           Icon(Icons.keyboard_arrow_down),
@@ -83,7 +82,7 @@ class SearchField extends StatelessWidget {
     return TextField(
       decoration: InputDecoration(
         hintText: "Search",
-        fillColor: secondaryColor,
+        fillColor: FitnessAppTheme.secondaryColor,
         filled: true,
         border: OutlineInputBorder(
           borderSide: BorderSide.none,
@@ -92,10 +91,10 @@ class SearchField extends StatelessWidget {
         suffixIcon: InkWell(
           onTap: () {},
           child: Container(
-            padding: EdgeInsets.all(defaultPadding * 0.75),
-            margin: EdgeInsets.symmetric(horizontal: defaultPadding / 2),
+            padding: EdgeInsets.all(FitnessAppTheme.defaultPadding * 0.75),
+            margin: EdgeInsets.symmetric(horizontal: FitnessAppTheme.defaultPadding / 2),
             decoration: BoxDecoration(
-              color: primaryColor,
+              color: FitnessAppTheme.primaryColor,
               borderRadius: const BorderRadius.all(Radius.circular(10)),
             ),
             child: SvgPicture.asset("assets/icons/Search.svg"),

@@ -1,4 +1,4 @@
-import 'package:admin/constants.dart';
+import 'package:admin/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 
 class Routine{
@@ -37,7 +37,7 @@ List demoMyFiles = [
     prof: "1328",
     svgSrc: "assets/icons/Documents.svg",
     timings: "1.9GB",
-    color: primaryColor,
+    color: FitnessAppTheme.primaryColor,
     percentage: 35,
   ),
   RoutineInfo(
@@ -74,5 +74,5 @@ final List<String> svgLogos = [
 ];
 
 final List<Color> cardColors = [
-  primaryColor, Color(0xFFFFA113), Color(0xFFA4CDFF), Color(0xFF007EE5),
+  FitnessAppTheme.primaryColor, Color(0xFFFFA113), Color(0xFFA4CDFF), Color(0xFF007EE5),
 ];

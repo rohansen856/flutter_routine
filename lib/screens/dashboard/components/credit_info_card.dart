@@ -1,7 +1,6 @@
+import 'package:admin/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import '../../../constants.dart';
 
 class StorageInfoCard extends StatelessWidget {
   const StorageInfoCard({
@@ -17,12 +16,12 @@ class StorageInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: defaultPadding),
-      padding: EdgeInsets.all(defaultPadding),
+      margin: EdgeInsets.only(top: FitnessAppTheme.defaultPadding),
+      padding: EdgeInsets.all(FitnessAppTheme.defaultPadding),
       decoration: BoxDecoration(
-        border: Border.all(width: 2, color: primaryColor.withOpacity(0.15)),
+        border: Border.all(width: 2, color: FitnessAppTheme.primaryColor.withOpacity(0.15)),
         borderRadius: const BorderRadius.all(
-          Radius.circular(defaultPadding),
+          Radius.circular(FitnessAppTheme.defaultPadding),
         ),
       ),
       child: Row(
@@ -34,7 +33,7 @@ class StorageInfoCard extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+              padding: const EdgeInsets.symmetric(horizontal: FitnessAppTheme.defaultPadding),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

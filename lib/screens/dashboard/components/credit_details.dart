@@ -1,6 +1,5 @@
+import 'package:admin/theme/theme_data.dart';
 import 'package:flutter/material.dart';
-
-import '../../../constants.dart';
 import 'chart.dart';
 import 'credit_info_card.dart';
 
@@ -12,9 +11,9 @@ class StorageDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(defaultPadding),
+      padding: EdgeInsets.all(FitnessAppTheme.defaultPadding),
       decoration: BoxDecoration(
-        color: secondaryColor,
+        color: FitnessAppTheme.secondaryColor,
         borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: Column(
@@ -27,7 +26,7 @@ class StorageDetails extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
-          SizedBox(height: defaultPadding),
+          SizedBox(height: FitnessAppTheme.defaultPadding),
           Chart(),
           StorageInfoCard(
             svgSrc: "assets/icons/Documents.svg",

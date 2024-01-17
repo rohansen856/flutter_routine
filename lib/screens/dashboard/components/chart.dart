@@ -1,7 +1,6 @@
+import 'package:admin/theme/theme_data.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-
-import '../../../constants.dart';
 
 class Chart extends StatelessWidget {
   const Chart({
@@ -26,7 +25,7 @@ class Chart extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: defaultPadding),
+                SizedBox(height: FitnessAppTheme.defaultPadding),
                 Text(
                   "16",
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
@@ -47,7 +46,7 @@ class Chart extends StatelessWidget {
 
 List<PieChartSectionData> paiChartSelectionData = [
   PieChartSectionData(
-    color: primaryColor,
+    color: FitnessAppTheme.primaryColor,
     value: 3,
     showTitle: false,
     radius: 25,
@@ -71,7 +70,7 @@ List<PieChartSectionData> paiChartSelectionData = [
     radius: 16,
   ),
   PieChartSectionData(
-    color: primaryColor.withOpacity(0.1),
+    color: FitnessAppTheme.primaryColor.withOpacity(0.1),
     value: 4,
     showTitle: false,
     radius: 13,

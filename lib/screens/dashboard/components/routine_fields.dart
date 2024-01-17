@@ -1,10 +1,8 @@
 import 'package:admin/database/routine_database.dart';
-import 'package:admin/main.dart';
 import 'package:admin/models/routine_model.dart';
 import 'package:admin/responsive.dart';
+import 'package:admin/theme/theme_data.dart';
 import 'package:flutter/material.dart';
-
-import '../../../constants.dart';
 import 'file_info_card.dart';
 
 class MyFiles extends StatefulWidget {
@@ -30,9 +28,9 @@ class _MyFilesState extends State<MyFiles> {
             ElevatedButton.icon(
               style: TextButton.styleFrom(
                 padding: EdgeInsets.symmetric(
-                  horizontal: defaultPadding * 1.5,
+                  horizontal: FitnessAppTheme.defaultPadding * 1.5,
                   vertical:
-                      defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
+                      FitnessAppTheme.defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
                 ),
               ),
               onPressed: () {},
@@ -41,7 +39,7 @@ class _MyFilesState extends State<MyFiles> {
             ),
           ],
         ),
-        SizedBox(height: defaultPadding),
+        SizedBox(height: FitnessAppTheme.defaultPadding),
         Responsive(
           mobile: FileInfoCardGridView(
             crossAxisCount: _size.width < 650 ? 2 : 4,
@@ -76,7 +74,7 @@ class _FileInfoCardGridViewState extends State<FileInfoCardGridView> {
 
   Future<void> func() async{
     await RoutineDatabase().getRoutine(1, 2);
-    List<Map<String, dynamic>> data = await RoutineDatabase().getRoutine(1, 2);
+    List<Map<String, dynamic>> data = await RoutineDatabase().getRoutine(DateTime.now().weekday, 2);
 
     List<RoutineInfo> info = [];
     print(data.length);
@@ -110,8 +108,8 @@ class _FileInfoCardGridViewState extends State<FileInfoCardGridView> {
       itemCount: allData.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: widget.crossAxisCount,
-        crossAxisSpacing: defaultPadding,
-        mainAxisSpacing: defaultPadding,
+        crossAxisSpacing: FitnessAppTheme.defaultPadding,
+        mainAxisSpacing: FitnessAppTheme.defaultPadding,
         childAspectRatio: widget.childAspectRatio,
       ),
       itemBuilder: (context, index) => FileInfoCard(info: allData[index]),

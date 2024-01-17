@@ -14,8 +14,9 @@ class RoutineDatabase extends ChangeNotifier{
     // final mybox = Hive.box('testBox');
     List<Map<String, dynamic>> data = await supabase.from('routine')
     .select()
-    .eq('day', DateTime.now().weekday)
-    .eq('sem', 2);
+    .eq('day', day)
+    .eq('sem', sem);
+    print('storage data is:');
     print(data);
     // List<dynamic> data = await supabase.from('routine').select().eq('day', day).eq('sem', sem);
     return data;
