@@ -1,7 +1,7 @@
 import 'package:admin/controllers/MenuAppController.dart';
 import 'package:admin/database/routine_database.dart';
-import 'package:admin/screens/auth/auth_screen.dart';
-import 'package:admin/screens/auth/splash_screen.dart';
+// import 'package:admin/screens/auth/auth_screen.dart';
+// import 'package:admin/screens/auth/splash_screen.dart';
 import 'package:admin/screens/main/main_screen.dart';
 import 'package:admin/theme/theme_data.dart';
 import 'package:flutter/material.dart';
@@ -45,8 +45,8 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/home',
       routes: <String, WidgetBuilder>{
-        '/': (_) => SplashPage(),
-        '/login': (_) => AuthScreen(),
+        // '/': (_) => SplashPage(),
+        // '/login': (_) => AuthScreen(),
         '/home': (_) => MultiProvider(
           providers: [
             ChangeNotifierProvider(

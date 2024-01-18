@@ -17,7 +17,7 @@ class Routine{
 }
 
 class RoutineInfo {
-  final String? svgSrc, title, timings, prof;
+  final String? svgSrc, title, timings, prof, room;
   final int? percentage;
   final Color? color;
 
@@ -26,6 +26,7 @@ class RoutineInfo {
     this.title,
     this.timings,
     this.prof,
+    this.room,
     this.percentage,
     this.color,
   });

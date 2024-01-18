@@ -83,6 +83,7 @@ class _FileInfoCardGridViewState extends State<FileInfoCardGridView> {
       info.add(RoutineInfo(
         title: "${data[i]['code'].toString()} (${data[i]['type'].toString()})",
         prof: data[i]['prof'].toString(),
+        room: data[i]['room'].toString(),
         svgSrc: svgLogos[i],
         timings: "${(data[i]['from']/100).round()}:00 - ${(data[i]['to']/100).round()}:00",
         color: cardColors[i],

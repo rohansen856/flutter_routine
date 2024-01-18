@@ -41,7 +41,20 @@ class FileInfoCard extends StatelessWidget {
                 ),
               ),
               // Text("hi"),
-              Icon(Icons.more_vert, color: Colors.white54)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.more_vert, color: Colors.white54),
+                  Text(
+                    info.room??"",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(color: Colors.white54),
+                  ),
+                ],
+              )
             ],
           ),
           Text(
