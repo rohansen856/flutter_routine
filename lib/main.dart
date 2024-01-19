@@ -2,7 +2,7 @@ import 'package:admin/controllers/MenuAppController.dart';
 import 'package:admin/database/routine_database.dart';
 // import 'package:admin/screens/auth/auth_screen.dart';
 // import 'package:admin/screens/auth/splash_screen.dart';
-import 'package:admin/screens/main/main_screen.dart';
+import 'package:admin/screens/main_screen.dart';
 import 'package:admin/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

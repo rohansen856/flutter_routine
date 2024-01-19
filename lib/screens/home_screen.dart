@@ -47,10 +47,12 @@ class _AppHomeScreenState extends State<AppHomeScreen>
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          toolbarHeight: AppTheme.defaultPadding+10, 
-
+          toolbarHeight: AppTheme.defaultPadding+10,
           backgroundColor: Colors.transparent,
-          title: Text("IIITDMJ DIARIES", style: TextStyle(fontFamily: "Inter"),),
+          leading: Image.asset('assets/images/iiitdmj.png',),
+          title: Text("IIITDMJ", style: TextStyle(fontFamily: "Inter", fontWeight: FontWeight.bold),),
+          centerTitle: true,
+          scrolledUnderElevation: 0,
         ),
         body: FutureBuilder<bool>(
           future: getData(),
