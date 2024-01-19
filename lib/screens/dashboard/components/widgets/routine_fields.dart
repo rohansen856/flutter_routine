@@ -74,11 +74,9 @@ class _FileInfoCardGridViewState extends State<FileInfoCardGridView> {
   List allData = [];
 
   Future<void> func() async{
-    await RoutineDatabase().getRoutine(1, 2);
     List<Map<String, dynamic>> data = await RoutineDatabase().getRoutine(DateTime.now().weekday, 2);
 
     List<RoutineInfo> info = [];
-    print(data.length);
     for (var i = 0; i < data.length; i++) {
       info.add(RoutineInfo(
         title: "${data[i]['code'].toString()} (${data[i]['type'].toString()})",
@@ -93,8 +91,7 @@ class _FileInfoCardGridViewState extends State<FileInfoCardGridView> {
     setState(() {
       allData = info;
     });
-    print(allData.length);
-}
+  }
   @override
   initState(){
     // TODO: implement initState

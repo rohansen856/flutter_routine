@@ -16,7 +16,6 @@ class MainScreen extends StatelessWidget {
           ],
         ),
       ),
-      resizeToAvoidBottomInset: false,
     );
   }
 }

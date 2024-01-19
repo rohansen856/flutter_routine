@@ -12,8 +12,8 @@ Future<void> main() async{
   await Hive.initFlutter();
   await Hive.openBox('testBox');
 
-  const String supabaseUrl = "https://yyivbsxjptvxhmxtrqug.supabase.co";
-  const String supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl5aXZic3hqcHR2eGhteHRycXVnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDQ5NDgzMjAsImV4cCI6MjAyMDUyNDMyMH0.vnxZenLPuh9kXe2xcTYb4FMVCmTgKy7EcvE-CBexvP4";
+  const String supabaseUrl = "https://rfgzjoeivlveakoqxyfk.supabase.co";
+  const String supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJmZ3pqb2Vpdmx2ZWFrb3F4eWZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDU2NTQzMjUsImV4cCI6MjAyMTIzMDMyNX0.3pSb8cG6jkcvy5R9XC3C9rG43kGkIfvtguLC5rf_eMs";
 
   await Supabase.initialize(
     url: supabaseUrl,

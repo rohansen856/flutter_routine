@@ -16,9 +16,6 @@ class RoutineDatabase extends ChangeNotifier{
     .select()
     .eq('day', day)
     .eq('sem', sem);
-    print('storage data is:');
-    print(data);
-    // List<dynamic> data = await supabase.from('routine').select().eq('day', day).eq('sem', sem);
     return data;
   }
 }

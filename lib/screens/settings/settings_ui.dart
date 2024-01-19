@@ -1,7 +1,12 @@
+import 'package:admin/database/settings_database.dart';
+import 'package:admin/main.dart';
+import 'package:admin/models/settings_model.dart';
+import 'package:admin/screens/auth/auth_screen.dart';
 import 'package:admin/screens/settings/widgets/settings_list.dart';
 import 'package:admin/screens/settings/widgets/settings_section.dart';
 import 'package:admin/screens/settings/widgets/settings_tile.dart';
 import 'package:admin/screens/settings/utils/platform_utils.dart';
+import 'package:admin/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 
 
@@ -18,6 +23,7 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState
     extends State<SettingsScreen> {
   bool useCustomTheme = false;
+  var session = supabase.auth.currentSession;
 
   final platformsMap = <DevicePlatform, String>{
     DevicePlatform.device: 'Default',
@@ -30,6 +36,23 @@ class _SettingsScreenState
     DevicePlatform.windows: 'Windows',
   };
   DevicePlatform selectedPlatform = DevicePlatform.iOS;
+
+  late SettingsInfo? userData = null;
+
+  Future<void> func() async{
+    SettingsInfo data = await SettingsDatabase().getUser();
+    setState(() {
+      userData = data;
+    });
+    print(userData);
+  }
+
+  @override
+  initState(){
+    // TODO: implement initState
+    func();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,12 +94,21 @@ class _SettingsScreenState
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.mail),
-                title: Text('Email'),
-                enabled: false,
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Email',), 
+                    Text(userData?.email??'', style: TextStyle(color: AppTheme.deactivatedText),)
+                  ],
+                ),
+                enabled: session != null,
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.logout),
-                title: Text('Sign out'),
+                title: session != null? Text('Sign out'):Text('Sign in'),
+                onPressed: (_){
+                  showAlertDialog(context);
+                },
               ),
             ],
           ),
@@ -127,6 +159,44 @@ class _SettingsScreenState
           ),
         ],
       ),
+    );
+  }
+
+  void showAlertDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Sign Out?'),
+          content: Text('Do you really want to sign out?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: (){
+                Navigator.of(context).pop();
+              }, 
+              child: Text('Cancel')
+            ),
+            TextButton(
+              onPressed: () {
+                // Close the dialog
+                if(session!=null){
+                  supabase.auth.signOut();
+                  setState(() {
+                    userData = null;
+                    session = null;
+                  });
+                }
+                else Navigator.push(
+                  context,
+                  new MaterialPageRoute(builder: (context) => AuthScreen()),
+                );
+                Navigator.of(context).pop();
+              },
+              child: Text('Confirm'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
