@@ -225,7 +225,7 @@ class NotificationController {
         msg: 'test message',
         heroThumbUrl:
             'https://storage.googleapis.com/cms-storage-bucket/d406c736e7c4c57f5f61.png',
-        hoursFromNow: 5,
+        hoursFromNow: 0,
         username: 'test user',
         repeatNotif: false);
   }

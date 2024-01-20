@@ -1,6 +1,6 @@
 // import 'package:admin/screens/auth/auth_screen.dart';
 // import 'package:admin/screens/auth/splash_screen.dart';
-import 'package:admin/controllers/notification.dart';
+import 'package:admin/controllers/notification_controller.dart';
 import 'package:admin/screens/main_screen.dart';
 import 'package:admin/theme/theme_data.dart';
 import 'package:flutter/material.dart';
@@ -46,6 +46,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     // TODO: implement initState
     NotificationController.createNewNotification();
+    NotificationController.scheduleNewNotification();
     super.initState();
   }
 
