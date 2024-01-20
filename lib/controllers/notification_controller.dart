@@ -192,9 +192,9 @@ class NotificationController {
         content: NotificationContent(
             id: -1, // -1 is replaced by a random number
             channelKey: 'alerts',
-            title: 'Huston! The eagle has landed!',
+            title: 'Yooo! Welcome to CampusOrbit!',
             body:
-                "A small step for a man, but a giant leap to Flutter's community!",
+                "A small help from you, but a giant leap for me!",
             bigPicture: 'https://storage.googleapis.com/cms-storage-bucket/d406c736e7c4c57f5f61.png',
             largeIcon: 'https://storage.googleapis.com/cms-storage-bucket/0dbfcc7a59cd1cf16282.png',
             //'asset://assets/images/balloons-in-sky.jpg',

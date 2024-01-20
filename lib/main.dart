@@ -46,7 +46,6 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     // TODO: implement initState
     NotificationController.createNewNotification();
-    NotificationController.scheduleNewNotification();
     super.initState();
   }
 
