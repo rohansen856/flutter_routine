@@ -1,6 +1,6 @@
-import 'package:admin/screens/dashboard/components/bottomBar/bottom_bar.dart';
-import 'package:admin/screens/dashboard/components/bottomBar/tab_icons.dart';
-import 'package:admin/screens/dashboard/components/dashboard_screen.dart';
+import 'package:admin/screens/dashboard/bottomBar/bottom_bar.dart';
+import 'package:admin/screens/dashboard/bottomBar/tab_icons.dart';
+import 'package:admin/screens/dashboard/dashboard_screen.dart';
 import 'package:admin/screens/explore/explore_screen.dart';
 import 'package:admin/screens/settings/settings_ui.dart';
 import 'package:admin/theme/theme_data.dart';

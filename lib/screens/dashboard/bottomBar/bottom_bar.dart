@@ -1,5 +1,5 @@
 import 'dart:math' as math;
-import 'package:admin/screens/dashboard/components/bottomBar/tab_icons.dart';
+import 'package:admin/screens/dashboard/bottomBar/tab_icons.dart';
 import 'package:admin/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 

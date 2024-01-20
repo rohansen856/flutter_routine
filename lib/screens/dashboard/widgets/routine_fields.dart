@@ -12,7 +12,7 @@ class MyFiles extends StatefulWidget {
 }
 
 class _MyFilesState extends State<MyFiles> {
-  List<String> weekdays = ['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  List<String> weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
   @override
   Widget build(BuildContext context) {
