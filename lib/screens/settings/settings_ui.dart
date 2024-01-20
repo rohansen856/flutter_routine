@@ -1,3 +1,4 @@
+import 'package:admin/animation/text_load_animation.dart';
 import 'package:admin/database/settings_database.dart';
 import 'package:admin/main.dart';
 import 'package:admin/models/settings_model.dart';
@@ -25,8 +26,8 @@ class _SettingsScreenState
   var session = supabase.auth.currentSession;
 
   late SettingsInfo? userData = null;
-  String branch = '';
-  String semester = '';
+  String? branch = null;
+  String? semester = null;
 
   Future<void> func() async{
     SettingsInfo data = await SettingsDatabase().getUser();
@@ -90,7 +91,9 @@ class _SettingsScreenState
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Email',), 
-                    Text(userData?.email??'', style: TextStyle(color: AppTheme.deactivatedText),)
+                    userData!=null
+                    ?Text(userData?.email??'', style: TextStyle(color: AppTheme.deactivatedText),)
+                    :TextLoadingAnimation()
                   ],
                 ),
                 enabled: session != null,
@@ -119,7 +122,9 @@ class _SettingsScreenState
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Branch',), 
-                    Text(branch, style: TextStyle(color: AppTheme.deactivatedText),)
+                    branch!=null
+                    ?Text(branch??'', style: TextStyle(color: AppTheme.deactivatedText),)
+                    :TextLoadingAnimation()
                   ],
                 ),
                 enabled: session != null,
@@ -131,7 +136,9 @@ class _SettingsScreenState
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Semester',), 
-                    Text(semester, style: TextStyle(color: AppTheme.deactivatedText),)
+                    semester!=null 
+                    ?Text(semester??'', style: TextStyle(color: AppTheme.deactivatedText),)
+                    :TextLoadingAnimation()
                   ],
                 ),
                 enabled: session != null,

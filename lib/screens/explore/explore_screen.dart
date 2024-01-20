@@ -1,3 +1,4 @@
+import 'package:admin/animation/text_load_animation.dart';
 import 'package:admin/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'header.dart';
@@ -23,6 +24,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
             children: [
               Header(),
               SizedBox(height: AppTheme.defaultPadding),
+              TextLoadingAnimation()
             ],
           ),
         ),

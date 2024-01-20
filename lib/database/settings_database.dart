@@ -56,6 +56,7 @@ class SettingsDatabase extends ChangeNotifier{
           await supabase.from('profiles').select().eq('id', userId).single();
     } catch (error) {
       data = null;
+      this.clearData();
     } finally {
       userData = SettingsInfo(
         email: data['email'],
