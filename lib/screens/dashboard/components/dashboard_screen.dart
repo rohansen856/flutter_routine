@@ -59,7 +59,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       child: StorageDetails(),
                     ),
                 ],
-              )
+              ),
+              SizedBox(height: 45,),
             ],
           ),
         ),

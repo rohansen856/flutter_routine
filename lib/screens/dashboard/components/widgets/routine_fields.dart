@@ -89,7 +89,7 @@ class _FileInfoCardGridViewState extends State<FileInfoCardGridView> {
       ));
     }
     setState(() {
-      allData = info;
+      allData = info.length==0?[null]:info;
     });
   }
   @override
@@ -101,8 +101,8 @@ class _FileInfoCardGridViewState extends State<FileInfoCardGridView> {
 
   @override
   Widget build(BuildContext context) {
-    return allData.length<=0
-    ? Container(
+    if(allData.length<=0)
+    return Container(
       height: 100,
       width: double.maxFinite,
       decoration: BoxDecoration(
@@ -110,6 +110,17 @@ class _FileInfoCardGridViewState extends State<FileInfoCardGridView> {
         color:  AppTheme.secondaryColor,
       ),
       child: Center(child: CircularProgressIndicator()),
+    );
+    else 
+    return allData[0]==null
+    ? Container(
+      height: 100,
+      width: double.maxFinite,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+        color:  AppTheme.secondaryColor,
+      ),
+      child: Center(child: Text('NO CLASSES TODAY', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900,),)),
     )
     : GridView.builder(
       physics: NeverScrollableScrollPhysics(),

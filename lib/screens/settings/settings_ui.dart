@@ -9,7 +9,6 @@ import 'package:admin/screens/settings/utils/platform_utils.dart';
 import 'package:admin/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 
-
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({
     Key? key,
@@ -25,24 +24,16 @@ class _SettingsScreenState
   bool useCustomTheme = false;
   var session = supabase.auth.currentSession;
 
-  final platformsMap = <DevicePlatform, String>{
-    DevicePlatform.device: 'Default',
-    DevicePlatform.android: 'Android',
-    DevicePlatform.iOS: 'iOS',
-    DevicePlatform.web: 'Web',
-    DevicePlatform.fuchsia: 'Fuchsia',
-    DevicePlatform.linux: 'Linux',
-    DevicePlatform.macOS: 'MacOS',
-    DevicePlatform.windows: 'Windows',
-  };
-  DevicePlatform selectedPlatform = DevicePlatform.iOS;
-
   late SettingsInfo? userData = null;
+  String branch = '';
+  String semester = '';
 
   Future<void> func() async{
     SettingsInfo data = await SettingsDatabase().getUser();
     setState(() {
       userData = data;
+      branch = userData!.branch != null ? userData!.branch.toString():'';
+      semester = userData!.sem != null ? userData!.sem.toString():'';
     });
     print(userData);
   }
@@ -57,6 +48,7 @@ class _SettingsScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomAppBar(height: 45),
       body: SettingsList(
         platform: selectedPlatform,
         sections: [
@@ -107,28 +99,43 @@ class _SettingsScreenState
                 leading: Icon(Icons.logout),
                 title: session != null? Text('Sign out'):Text('Sign in'),
                 onPressed: (_){
-                  showAlertDialog(context);
+                  if(session==null)
+                  Navigator.push(
+                    context,
+                    new MaterialPageRoute(builder: (context) => AuthScreen()),
+                  );
+                  else showAlertDialog(context);
                 },
               ),
             ],
           ),
           SettingsSection(
-            title: Text('Security'),
+            title: Text('User Info'),
             tiles: <SettingsTile>[
-              SettingsTile.switchTile(
-                onToggle: (_) {},
-                initialValue: true,
-                leading: Icon(Icons.phonelink_lock),
-                title: Text('Lock app in background'),
-              ),
-              SettingsTile.switchTile(
-                onToggle: (_) {},
-                initialValue: true,
-                leading: Icon(Icons.fingerprint),
-                title: Text('Use fingerprint'),
-                description: Text(
-                  'Allow application to access stored fingerprint IDs',
+              SettingsTile.navigation(
+                onPressed: (_){branchSelectDialogue(context);},
+                leading: Icon(Icons.book),
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Branch',), 
+                    Text(branch, style: TextStyle(color: AppTheme.deactivatedText),)
+                  ],
                 ),
+                enabled: session != null,
+              ),
+              SettingsTile.navigation(
+                onPressed: (_){semSelectDialogue(context);},
+                leading: Icon(Icons.school),
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Semester',), 
+                    Text(semester, style: TextStyle(color: AppTheme.deactivatedText),)
+                  ],
+                ),
+                enabled: session != null,
+                description: Text('Set This Data for Homescreen'),
               ),
               SettingsTile.switchTile(
                 onToggle: (_) {},
@@ -181,20 +188,83 @@ class _SettingsScreenState
                 // Close the dialog
                 if(session!=null){
                   supabase.auth.signOut();
+                  SettingsDatabase().clearData();
                   setState(() {
                     userData = null;
                     session = null;
+                    branch = '';
+                    semester = '';
                   });
                 }
-                else Navigator.push(
-                  context,
-                  new MaterialPageRoute(builder: (context) => AuthScreen()),
-                );
                 Navigator.of(context).pop();
               },
               child: Text('Confirm'),
             ),
           ],
+        );
+      },
+    );
+  }
+
+  void branchSelectDialogue(BuildContext context) {
+    List<String> branches = ['CS', 'EC', 'ME', 'SM', 'DS'];
+    List<Widget> widList = [];
+
+    branches.forEach((el)=>widList.add(
+        TextButton(
+              onPressed: () async{
+                // Close the dialog
+                bool res = await SettingsDatabase().writeData(SettingsArgs.branch, el);
+                if(res){
+                  setState(() {
+                    branch = el;
+                  });
+                }
+                Navigator.of(context).pop();
+              },
+              child: Text(el),
+            ),
+      )
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          actions: widList,
+          actionsAlignment: MainAxisAlignment.center,
+        );
+      },
+    );
+  }
+
+  void semSelectDialogue(BuildContext context) {
+    List<int> sems = [1,2,3,4,5,6,7,8];
+    List<Widget> widList = [];
+
+    sems.forEach((el)=>widList.add(
+        TextButton(
+              onPressed: () async{
+                // Close the dialog
+                bool res = await SettingsDatabase().writeData(SettingsArgs.sem, el.toString());
+                if(res){
+                  setState(() {
+                    semester = el.toString();
+                  });
+                }
+                Navigator.of(context).pop();
+              },
+              child: Text(el.toString()),
+            ),
+      )
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          actions: widList,
+          actionsAlignment: MainAxisAlignment.center,
         );
       },
     );

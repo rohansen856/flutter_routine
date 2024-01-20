@@ -49,3 +49,16 @@ class PlatformUtils {
     }
   }
 }
+
+final platformsMap = <DevicePlatform, String>{
+  DevicePlatform.device: 'Default',
+  DevicePlatform.android: 'Android',
+  DevicePlatform.iOS: 'iOS',
+  DevicePlatform.web: 'Web',
+  DevicePlatform.fuchsia: 'Fuchsia',
+  DevicePlatform.linux: 'Linux',
+  DevicePlatform.macOS: 'MacOS',
+  DevicePlatform.windows: 'Windows',
+};
+
+DevicePlatform selectedPlatform = DevicePlatform.iOS;
