@@ -12,7 +12,7 @@ class MyFiles extends StatefulWidget {
 }
 
 class _MyFilesState extends State<MyFiles> {
-  List<String> weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  List<String> weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class _MyFilesState extends State<MyFiles> {
               ),
               onPressed: () {},
               icon: Icon(Icons.calendar_today_rounded),
-              label: Text(weekdays[DateTime.now().weekday]),
+              label: Text(weekdays[DateTime.now().weekday-1]),
             ),
           ],
         ),
@@ -74,7 +74,7 @@ class _FileInfoCardGridViewState extends State<FileInfoCardGridView> {
   List allData = [];
 
   Future<void> func() async{
-    List<Map<String, dynamic>> data = await RoutineDatabase().getRoutine(DateTime.now().weekday, 2);
+    List<Map<String, dynamic>> data = await RoutineDatabase().getRoutine(DateTime.now().weekday-1, 2);
 
     List<RoutineInfo> info = [];
     for (var i = 0; i < data.length; i++) {

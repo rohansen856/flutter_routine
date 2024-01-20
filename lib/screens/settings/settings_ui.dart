@@ -30,13 +30,19 @@ class _SettingsScreenState
   String? semester = null;
 
   Future<void> func() async{
-    SettingsInfo data = await SettingsDatabase().getUser();
-    setState(() {
-      userData = data;
-      branch = userData!.branch != null ? userData!.branch.toString():'';
-      semester = userData!.sem != null ? userData!.sem.toString():'';
-    });
-    print(userData);
+    late SettingsInfo? data;
+    try{
+      data = await SettingsDatabase().getUser();
+    }catch(err){
+      data = null;
+    }finally{
+      setState(() {
+        userData = data;
+        branch = userData!.branch != null ? userData!.branch.toString():'';
+        semester = userData!.sem != null ? userData!.sem.toString():'';
+      });
+      print({branch,semester});
+    }
   }
 
   @override

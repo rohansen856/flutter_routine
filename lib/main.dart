@@ -1,5 +1,6 @@
 // import 'package:admin/screens/auth/auth_screen.dart';
 // import 'package:admin/screens/auth/splash_screen.dart';
+import 'package:admin/controllers/notification.dart';
 import 'package:admin/screens/main_screen.dart';
 import 'package:admin/theme/theme_data.dart';
 import 'package:flutter/material.dart';
@@ -20,13 +21,34 @@ Future<void> main() async{
     anonKey: supabaseAnonKey,
   );
 
+  await NotificationController.initializeLocalNotifications();
+  await NotificationController.initializeIsolateReceivePort();
+
   runApp(MyApp());
 }
 
 final supabase = Supabase.instance.client;
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  
+  static final GlobalKey<NavigatorState> navigatorKey =
+    GlobalKey<NavigatorState>();
+
+  static Color mainColor = const Color(0xFF9D50DD);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
+  @override
+  void initState() {
+    // TODO: implement initState
+    NotificationController.createNewNotification();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
