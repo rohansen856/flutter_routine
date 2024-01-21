@@ -6,7 +6,7 @@ class RoutineDatabase extends ChangeNotifier{
   static Future<void> initDatabase() async{
     final mybox = Hive.box('testBox');
     // if(!(mybox.get('settings.sem')))return;
-    final data = await supabase.from('routine').select();
+    final data = await supabase.from('routine').select().eq('branch', 'CS');
     mybox.put('routine', data);
   }
 

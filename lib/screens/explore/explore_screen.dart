@@ -1,7 +1,8 @@
 import 'package:admin/animation/text_load_animation.dart';
+import 'package:admin/screens/explore/widgets/github_users.dart';
 import 'package:admin/theme/theme_data.dart';
 import 'package:flutter/material.dart';
-import 'header.dart';
+import 'widgets/header.dart';
 
 class ExploreScreen extends StatefulWidget {
     const ExploreScreen({Key? key, this.animationController}) : super(key: key);
@@ -16,18 +17,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: SingleChildScrollView(
-          primary: false,
-          padding: EdgeInsets.all(AppTheme.defaultPadding),
-          child: Column(
-            children: [
-              Header(),
-              SizedBox(height: AppTheme.defaultPadding),
-              TextLoadingAnimation()
-            ],
-          ),
-        ),
-      );
+    return GithubUsers();
   }
 }

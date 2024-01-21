@@ -47,9 +47,9 @@ class _AppHomeScreenState extends State<AppHomeScreen>
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          toolbarHeight: AppTheme.defaultPadding+10,
+          toolbarHeight: AppTheme.defaultPadding+30,
           backgroundColor: Colors.transparent,
-          leading: Image.asset('assets/images/iiitdmj.png',),
+          leading: Image.asset('assets/images/iiitdmj.png', height: 10,),
           title: Text("IIITDMJ", style: TextStyle(fontFamily: "Inter", fontWeight: FontWeight.bold),),
           centerTitle: true,
           scrolledUnderElevation: 0,

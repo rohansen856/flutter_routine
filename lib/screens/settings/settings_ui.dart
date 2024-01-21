@@ -9,6 +9,7 @@ import 'package:admin/screens/settings/widgets/settings_tile.dart';
 import 'package:admin/screens/settings/utils/platform_utils.dart';
 import 'package:admin/theme/theme_data.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({
@@ -25,11 +26,16 @@ class _SettingsScreenState
   bool useCustomTheme = false;
   var session = supabase.auth.currentSession;
 
+  bool isLoading = false;
+
   late SettingsInfo? userData = null;
   String? branch = null;
   String? semester = null;
 
   Future<void> func() async{
+    setState(() {
+      isLoading = true;
+    });
     late SettingsInfo? data;
     try{
       data = await SettingsDatabase().getUser();
@@ -37,11 +43,12 @@ class _SettingsScreenState
       data = null;
     }finally{
       setState(() {
+        isLoading = false;
         userData = data;
         branch = userData!.branch != null ? userData!.branch.toString():'';
         semester = userData!.sem != null ? userData!.sem.toString():'';
       });
-      print({branch,semester});
+      print(isLoading);
     }
   }
 
@@ -93,15 +100,10 @@ class _SettingsScreenState
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.mail),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Email',), 
-                    userData!=null
-                    ?Text(userData?.email??'', style: TextStyle(color: AppTheme.deactivatedText),)
-                    :TextLoadingAnimation()
-                  ],
-                ),
+                title: Text('Email',),
+                trailing: isLoading
+                  ?TextLoadingAnimation()
+                  :Text(userData?.email??'', style: TextStyle(color: AppTheme.deactivatedText),),
                 enabled: session != null,
               ),
               SettingsTile.navigation(
@@ -113,7 +115,7 @@ class _SettingsScreenState
                     context,
                     new MaterialPageRoute(builder: (context) => AuthScreen()),
                   );
-                  else showAlertDialog(context);
+                  else signoutConfirmDialog(context);
                 },
               ),
             ],
@@ -122,31 +124,21 @@ class _SettingsScreenState
             title: Text('User Info'),
             tiles: <SettingsTile>[
               SettingsTile.navigation(
-                onPressed: (_){branchSelectDialogue(context);},
+                onPressed: (_){/*branchSelectDialogue(context);*/},
                 leading: Icon(Icons.book),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Branch',), 
-                    branch!=null
-                    ?Text(branch??'', style: TextStyle(color: AppTheme.deactivatedText),)
-                    :TextLoadingAnimation()
-                  ],
-                ),
+                title: Text('Branch',),
+                trailing: isLoading
+                  ?TextLoadingAnimation()
+                  :Text(branch??'', style: TextStyle(color: AppTheme.deactivatedText),),
                 enabled: session != null,
               ),
               SettingsTile.navigation(
-                onPressed: (_){semSelectDialogue(context);},
+                onPressed: (_){/*semSelectDialogue(context);*/},
                 leading: Icon(Icons.school),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Semester',), 
-                    semester!=null 
-                    ?Text(semester??'', style: TextStyle(color: AppTheme.deactivatedText),)
-                    :TextLoadingAnimation()
-                  ],
-                ),
+                title: Text('Semester',), 
+                trailing: isLoading
+                  ?TextLoadingAnimation()
+                  :Text(semester??'', style: TextStyle(color: AppTheme.deactivatedText),),
                 enabled: session != null,
                 description: Text('Set This Data for Homescreen'),
               ),
@@ -172,8 +164,11 @@ class _SettingsScreenState
                 title: Text('Terms of Service'),
               ),
               SettingsTile.navigation(
+                onPressed: (_){
+                  _launchUrl("https://github.com/rohansen856");
+                },
                 leading: Icon(Icons.collections_bookmark),
-                title: Text('Open source license'),
+                title: Text('Meet The Developer'),
               ),
             ],
           ),
@@ -182,7 +177,14 @@ class _SettingsScreenState
     );
   }
 
-  void showAlertDialog(BuildContext context) {
+  Future<void> _launchUrl(String uri) async {
+    final _url = Uri.parse(uri);
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
+  }
+
+  void signoutConfirmDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -199,17 +201,19 @@ class _SettingsScreenState
             TextButton(
               onPressed: () {
                 // Close the dialog
-                if(session!=null){
-                  supabase.auth.signOut();
-                  SettingsDatabase().clearData();
-                  setState(() {
-                    userData = null;
-                    session = null;
-                    branch = '';
-                    semester = '';
-                  });
-                }
                 Navigator.of(context).pop();
+                if(session!=null){
+                  try {supabase.auth.signOut();}
+                  finally {
+                    SettingsDatabase().clearData();
+                    setState(() {
+                      userData = null;
+                      session = null;
+                      branch = '';
+                      semester = '';
+                    });
+                  }
+                }
               },
               child: Text('Confirm'),
             ),
@@ -219,67 +223,67 @@ class _SettingsScreenState
     );
   }
 
-  void branchSelectDialogue(BuildContext context) {
-    List<String> branches = ['CS', 'EC', 'ME', 'SM', 'DS'];
-    List<Widget> widList = [];
+  // void branchSelectDialogue(BuildContext context) {
+  //   List<String> branches = ['CS', 'EC', 'ME', 'SM', 'DS'];
+  //   List<Widget> widList = [];
 
-    branches.forEach((el)=>widList.add(
-        TextButton(
-              onPressed: () async{
-                // Close the dialog
-                bool res = await SettingsDatabase().writeData(SettingsArgs.branch, el);
-                if(res){
-                  setState(() {
-                    branch = el;
-                  });
-                }
-                Navigator.of(context).pop();
-              },
-              child: Text(el),
-            ),
-      )
-    );
+  //   branches.forEach((el)=>widList.add(
+  //       TextButton(
+  //             onPressed: () async{
+  //               // Close the dialog
+  //               bool res = await SettingsDatabase().writeData(SettingsArgs.branch, el);
+  //               if(res){
+  //                 setState(() {
+  //                   branch = el;
+  //                 });
+  //               }
+  //               Navigator.of(context).pop();
+  //             },
+  //             child: Text(el),
+  //           ),
+  //     )
+  //   );
 
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          actions: widList,
-          actionsAlignment: MainAxisAlignment.center,
-        );
-      },
-    );
-  }
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         actions: widList,
+  //         actionsAlignment: MainAxisAlignment.center,
+  //       );
+  //     },
+  //   );
+  // }
 
-  void semSelectDialogue(BuildContext context) {
-    List<int> sems = [1,2,3,4,5,6,7,8];
-    List<Widget> widList = [];
+  // void semSelectDialogue(BuildContext context) {
+  //   List<int> sems = [1,2,3,4,5,6,7,8];
+  //   List<Widget> widList = [];
 
-    sems.forEach((el)=>widList.add(
-        TextButton(
-              onPressed: () async{
-                // Close the dialog
-                bool res = await SettingsDatabase().writeData(SettingsArgs.sem, el.toString());
-                if(res){
-                  setState(() {
-                    semester = el.toString();
-                  });
-                }
-                Navigator.of(context).pop();
-              },
-              child: Text(el.toString()),
-            ),
-      )
-    );
+  //   sems.forEach((el)=>widList.add(
+  //       TextButton(
+  //             onPressed: () async{
+  //               // Close the dialog
+  //               bool res = await SettingsDatabase().writeData(SettingsArgs.sem, el.toString());
+  //               if(res){
+  //                 setState(() {
+  //                   semester = el.toString();
+  //                 });
+  //               }
+  //               Navigator.of(context).pop();
+  //             },
+  //             child: Text(el.toString()),
+  //           ),
+  //     )
+  //   );
 
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          actions: widList,
-          actionsAlignment: MainAxisAlignment.center,
-        );
-      },
-    );
-  }
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         actions: widList,
+  //         actionsAlignment: MainAxisAlignment.center,
+  //       );
+  //     },
+  //   );
+  // }
 }

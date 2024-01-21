@@ -48,6 +48,8 @@ dependencies:
   flutter_svg: ^2.0.5
   fl_chart: ^0.62.0
   awesome_notifications: ^0.8.2
+  url_launcher: ^6.2.3
+  dio: ^5.4.0
 
 dev_dependencies:
   flutter_test:

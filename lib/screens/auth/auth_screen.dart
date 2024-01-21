@@ -19,12 +19,18 @@ class _AuthScreenState extends State<AuthScreen> {
   late final StreamSubscription<AuthState> _authStateSubscription;
 
   Future<void> _signIn() async {
+    final String email = _emailController.text.trim();
+    if(!email.contains("iiitdmj.ac.in"))
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Please enter a valid email'), backgroundColor: Colors.red),
+    );
+    else
     try {
       setState(() {
         _isLoading = true;
       });
       await supabase.auth.signInWithOtp(
-        email: _emailController.text.trim(),
+        email: email,
         emailRedirectTo:
             kIsWeb ? null : 'io.supabase.flutterquickstart://login-callback/',
       );
@@ -35,14 +41,18 @@ class _AuthScreenState extends State<AuthScreen> {
         _emailController.clear();
       }
     } on AuthException catch (error) {
-      SnackBar(
-        content: Text(error.message),
-        backgroundColor: Theme.of(context).colorScheme.error,
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(error.message),
+          backgroundColor: Theme.of(context).colorScheme.error,
+        )
       );
     } catch (error) {
-      SnackBar(
-        content: const Text('Unexpected error occurred'),
-        backgroundColor: Theme.of(context).colorScheme.error,
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Unexpected error occurred'),
+          backgroundColor: Theme.of(context).colorScheme.error,
+        )
       );
     } finally {
       if (mounted) {
