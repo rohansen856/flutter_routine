@@ -32,7 +32,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     flex: 5,
                     child: Column(
                       children: [
-                        MyFiles(),
+                        CreditsData(),
                         SizedBox(height: AppTheme.defaultPadding),
                         // RecentFiles(),
                         Column(

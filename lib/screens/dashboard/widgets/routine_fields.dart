@@ -6,13 +6,13 @@ import 'package:admin/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'routine_info_card.dart';
 
-class MyFiles extends StatefulWidget {
+class CreditsData extends StatefulWidget {
 
   @override
-  State<MyFiles> createState() => _MyFilesState();
+  State<CreditsData> createState() => _CreditsDataState();
 }
 
-class _MyFilesState extends State<MyFiles> {
+class _CreditsDataState extends State<CreditsData> {
   List<String> weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   @override

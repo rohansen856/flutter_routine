@@ -53,7 +53,7 @@ class _AppHomeScreenState extends State<AppHomeScreen>
             padding: const EdgeInsets.all(5.0),
             child: Image.asset('assets/images/iiitdmj.png', height: 10,),
           ),
-          title: Text("IIITDMJ", style: TextStyle(fontFamily: "Inter", fontWeight: FontWeight.bold),),
+          title: Text("CampusOrbit", style: TextStyle(fontFamily: "Inter", fontWeight: FontWeight.bold),),
           centerTitle: true,
           scrolledUnderElevation: 0,
         ),

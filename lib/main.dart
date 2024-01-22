@@ -53,7 +53,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'IIITDMJ',
+      title: 'CampusOrbit',
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: AppTheme.bgColor,
         textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
