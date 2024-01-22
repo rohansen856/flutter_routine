@@ -1,6 +1,4 @@
-import 'package:admin/animation/text_load_animation.dart';
 import 'package:admin/main.dart';
-import 'package:admin/screens/explore/widgets/github_users.dart';
 import 'package:admin/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'widgets/header.dart';
@@ -34,7 +32,7 @@ class _AllUsersState extends State<AllUsers> {
 
   void getAllUsers() async {
     try {
-      var response = await supabase.from('profiles').select();
+      var response = await supabase.from('profiles').select().eq('visibility', true);
 
       setState(() {
         users = response;

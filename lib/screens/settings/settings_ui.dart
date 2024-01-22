@@ -23,12 +23,12 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState
     extends State<SettingsScreen> {
-  bool useCustomTheme = false;
   var session = supabase.auth.currentSession;
 
   bool isLoading = false;
 
   late SettingsInfo? userData = null;
+  bool isProfileVisible = true;
   String? branch = null;
   String? semester = null;
   int? roll = null;
@@ -81,16 +81,6 @@ class _SettingsScreenState
                 title: Text('Environment'),
                 value: Text('Production'),
               ),
-              SettingsTile.switchTile(
-                onToggle: (value) {
-                  setState(() {
-                    useCustomTheme = value;
-                  });
-                },
-                initialValue: useCustomTheme,
-                leading: Icon(Icons.format_paint),
-                title: Text('Enable custom theme'),
-              ),
             ],
           ),
           SettingsSection(
@@ -119,6 +109,16 @@ class _SettingsScreenState
                   );
                   else signoutConfirmDialog(context);
                 },
+              ),
+              SettingsTile.switchTile(
+                onToggle: (value) {
+                  setState(() {
+                    isProfileVisible = value;
+                  });
+                },
+                initialValue: isProfileVisible,
+                leading: Icon(isProfileVisible? Icons.visibility:Icons.visibility_off),
+                title: Text('Profile visibility'),
               ),
             ],
           ),
