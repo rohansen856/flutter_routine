@@ -1,5 +1,6 @@
 import 'package:admin/responsive.dart';
 import 'package:admin/screens/dashboard/widgets/mess_list_data.dart';
+import 'package:admin/screens/dashboard/widgets/mess_select.dart';
 import 'package:admin/screens/dashboard/widgets/routine_fields.dart';
 import 'package:admin/screens/dashboard/widgets/credit_details.dart';
 import 'package:admin/theme/theme_data.dart';
@@ -37,10 +38,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "Mess menu",
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
+                            MessSelectButton(),
                             MealsListView(),
                           ],
                         ),

@@ -49,7 +49,10 @@ class _AppHomeScreenState extends State<AppHomeScreen>
         appBar: AppBar(
           toolbarHeight: AppTheme.defaultPadding+30,
           backgroundColor: Colors.transparent,
-          leading: Image.asset('assets/images/iiitdmj.png', height: 10,),
+          leading: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Image.asset('assets/images/iiitdmj.png', height: 10,),
+          ),
           title: Text("IIITDMJ", style: TextStyle(fontFamily: "Inter", fontWeight: FontWeight.bold),),
           centerTitle: true,
           scrolledUnderElevation: 0,

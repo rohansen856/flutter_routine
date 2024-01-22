@@ -31,6 +31,7 @@ class _SettingsScreenState
   late SettingsInfo? userData = null;
   String? branch = null;
   String? semester = null;
+  int? roll = null;
 
   Future<void> func() async{
     setState(() {
@@ -47,6 +48,7 @@ class _SettingsScreenState
         userData = data;
         branch = userData!.branch != null ? userData!.branch.toString():'';
         semester = userData!.sem != null ? userData!.sem.toString():'';
+        roll = userData!.roll != null ? userData!.roll:0;
       });
       print(isLoading);
     }
@@ -121,11 +123,11 @@ class _SettingsScreenState
             ],
           ),
           SettingsSection(
-            title: Text('User Info'),
+            title: Text('Academic Info'),
             tiles: <SettingsTile>[
               SettingsTile.navigation(
-                onPressed: (_){/*branchSelectDialogue(context);*/},
-                leading: Icon(Icons.book),
+                // onPressed: (_){/*branchSelectDialogue(context);*/},
+                leading: Icon(Icons.school),
                 title: Text('Branch',),
                 trailing: isLoading
                   ?TextLoadingAnimation()
@@ -133,26 +135,23 @@ class _SettingsScreenState
                 enabled: session != null,
               ),
               SettingsTile.navigation(
-                onPressed: (_){/*semSelectDialogue(context);*/},
-                leading: Icon(Icons.school),
+                // onPressed: (_){/*semSelectDialogue(context);*/},
+                leading: Icon(Icons.book),
                 title: Text('Semester',), 
                 trailing: isLoading
                   ?TextLoadingAnimation()
                   :Text(semester??'', style: TextStyle(color: AppTheme.deactivatedText),),
                 enabled: session != null,
-                description: Text('Set This Data for Homescreen'),
               ),
-              SettingsTile.switchTile(
-                onToggle: (_) {},
-                initialValue: true,
-                leading: Icon(Icons.lock),
-                title: Text('Change password'),
-              ),
-              SettingsTile.switchTile(
-                onToggle: (_) {},
-                initialValue: true,
-                leading: Icon(Icons.notifications_active),
-                title: Text('Enable notifications'),
+              SettingsTile.navigation(
+                // onPressed: (_){/*semSelectDialogue(context);*/},
+                leading: Icon(Icons.numbers),
+                title: Text('Roll No',), 
+                trailing: isLoading
+                  ?TextLoadingAnimation()
+                  :Text(roll.toString(), style: TextStyle(color: AppTheme.deactivatedText),),
+                enabled: session != null,
+                description: Text('Your verified student data'),
               ),
             ],
           ),

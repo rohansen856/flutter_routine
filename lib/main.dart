@@ -1,6 +1,6 @@
 // import 'package:admin/screens/auth/auth_screen.dart';
-// import 'package:admin/screens/auth/splash_screen.dart';
 import 'package:admin/controllers/notification_controller.dart';
+import 'package:admin/screens/auth/splash_screen.dart';
 import 'package:admin/screens/main_screen.dart';
 import 'package:admin/theme/theme_data.dart';
 import 'package:flutter/material.dart';
@@ -60,9 +60,9 @@ class _MyAppState extends State<MyApp> {
             .apply(bodyColor: Colors.white),
         canvasColor: AppTheme.secondaryColor,
       ),
-      initialRoute: '/home',
+      initialRoute: '/',
       routes: <String, WidgetBuilder>{
-        // '/': (_) => SplashPage(),
+        '/': (_) => SplashPage(),
         // '/login': (_) => AuthScreen(),
         '/home': (_) => MainScreen()
       },

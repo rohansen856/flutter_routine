@@ -24,14 +24,14 @@ class _SplashPageState extends State<SplashPage> {
     if (session != null) {
       Navigator.of(context).pushReplacementNamed('/home');
     } else {
-      Navigator.of(context).pushReplacementNamed('/login');
+      Navigator.of(context).pushReplacementNamed('/home');
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(child: Text("hiiiiii")),
+      body: Center(child: CircularProgressIndicator()),
     );
   }
 }

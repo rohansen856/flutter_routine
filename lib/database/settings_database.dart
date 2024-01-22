@@ -48,7 +48,7 @@ class SettingsDatabase extends ChangeNotifier{
     mybox.deleteAll({'settings.branch', 'settings.sem', 'settings.mess'});
   }
 
-  Future<SettingsInfo> getUser() async {
+  Future<SettingsInfo> getInitialUser() async {
     late SettingsInfo userData;
     late var data;
     try {
@@ -64,6 +64,34 @@ class SettingsDatabase extends ChangeNotifier{
         group: data['group'],
         mess: data['mess'],
         sem: data['sem']
+      );
+      
+      if(userData.email!=null){
+        final mybox = Hive.box('testBox');
+        mybox.put('user', userData);
+      }
+      return userData;
+    }
+  }
+
+  Future<SettingsInfo> getUser() async {
+    late SettingsInfo userData;
+    late var data;
+    try {
+      // final mybox = await Hive.box('testBox');
+      data = await supabase.from('profiles').select().eq('id', userId).single();
+          //await mybox.get('user');
+    } catch (error) {
+      data = null;
+      this.clearData();
+    } finally {
+      userData = SettingsInfo(
+        email: data['email'],
+        branch: data['branch'],
+        group: data['group'],
+        mess: data['mess'],
+        sem: data['sem'],
+        roll: data['roll']
       );
       return userData;
     }

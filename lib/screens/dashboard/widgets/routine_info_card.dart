@@ -45,7 +45,7 @@ class FileInfoCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.more_vert, color: Colors.white54),
+                  Icon(Icons.room, color: Colors.white54),
                   Text(
                     info.room??"",
                     style: Theme.of(context)

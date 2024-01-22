@@ -1,4 +1,5 @@
 import 'package:admin/database/routine_database.dart';
+import 'package:admin/database/settings_database.dart';
 import 'package:admin/models/routine_model.dart';
 import 'package:admin/responsive.dart';
 import 'package:admin/theme/theme_data.dart';
@@ -74,7 +75,9 @@ class _FileInfoCardGridViewState extends State<FileInfoCardGridView> {
   List allData = [];
 
   Future<void> func() async{
-    List<Map<String, dynamic>> data = await RoutineDatabase().getRoutine(DateTime.now().weekday, 2);
+    var dat = await SettingsDatabase().getInitialUser();
+    print(dat.branch.toString().toUpperCase());
+    List<Map<String, dynamic>> data = await RoutineDatabase().getRoutine(DateTime.now().weekday, dat.branch.toString().toUpperCase(), dat.sem??0);
 
     List<RoutineInfo> info = [];
     for (var i = 0; i < data.length; i++) {
