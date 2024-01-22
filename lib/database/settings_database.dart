@@ -3,14 +3,18 @@ import 'package:admin/models/settings_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-enum SettingsArgs {branch, sem, mess}
+enum SettingsArgs {branch, sem, mess, visibility}
 
 class SettingsDatabase extends ChangeNotifier{
   final userId = supabase.auth.currentUser!.id;
   Future<bool> writeData(SettingsArgs name, dynamic data) async{
     final mybox = Hive.box('testBox');
     try{
-      if(name == SettingsArgs.branch){
+      if(name == SettingsArgs.visibility){
+        await supabase.from('profiles').update({'visibility':data}).eq('id', userId);
+        mybox.put('settings.visibility', data);
+      }
+      else if(name == SettingsArgs.branch){
         await supabase.from('profiles').update({'branch':data}).eq('id', userId);
         mybox.put('settings.branch', data);
       }

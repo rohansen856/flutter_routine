@@ -89,6 +89,7 @@ class _SettingsScreenState
               SettingsTile.navigation(
                 leading: Icon(Icons.phone),
                 title: Text('Phone number'),
+                enabled: false,
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.mail),
@@ -112,9 +113,7 @@ class _SettingsScreenState
               ),
               SettingsTile.switchTile(
                 onToggle: (value) {
-                  setState(() {
-                    isProfileVisible = value;
-                  });
+                  changeVisibility(value);
                 },
                 initialValue: isProfileVisible,
                 leading: Icon(isProfileVisible? Icons.visibility:Icons.visibility_off),
@@ -220,6 +219,16 @@ class _SettingsScreenState
         );
       },
     );
+  }
+
+  Future<void> changeVisibility(bool value) async{
+    print(value);
+    bool res = await SettingsDatabase().writeData(SettingsArgs.visibility,  value);
+    if(res){
+      setState(() {
+        isProfileVisible = value;
+      });
+    }
   }
 
   // void branchSelectDialogue(BuildContext context) {
