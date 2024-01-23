@@ -77,7 +77,7 @@ class FileInfoCard extends StatelessWidget {
                     .copyWith(color: Colors.white70),
               ),
               Text(
-                info.timings!,
+                "${(info.from!/100).round()}:00 - ${(info.to!/100).round()}:00",
                 style: Theme.of(context)
                     .textTheme
                     .bodySmall!

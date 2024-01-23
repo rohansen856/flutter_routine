@@ -22,7 +22,7 @@ class _AuthScreenState extends State<AuthScreen> {
     final String email = _emailController.text.trim();
     if(!email.contains("iiitdmj.ac.in"))
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Please enter a valid email'), backgroundColor: Colors.red),
+      const SnackBar(content: Text('Please enter a valid institute email'), backgroundColor: Colors.red),
     );
     else
     try {

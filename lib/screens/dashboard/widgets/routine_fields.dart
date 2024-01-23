@@ -86,7 +86,8 @@ class _FileInfoCardGridViewState extends State<FileInfoCardGridView> {
         prof: data[i]['prof'].toString(),
         room: data[i]['room'].toString(),
         svgSrc: svgLogos[i],
-        timings: "${(data[i]['from']/100).round()}:00 - ${(data[i]['to']/100).round()}:00",
+        from: data[i]['from'],
+        to: data[i]['to'],
         color: cardColors[i],
         percentage: 100,
       ));

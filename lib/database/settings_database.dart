@@ -7,49 +7,35 @@ enum SettingsArgs {branch, sem, mess, visibility}
 
 class SettingsDatabase extends ChangeNotifier{
   final userId = supabase.auth.currentUser!.id;
-  Future<bool> writeData(SettingsArgs name, dynamic data) async{
-    final mybox = Hive.box('testBox');
+
+  late Box<SettingsInfo> myBox = Hive.box<SettingsInfo>('testBox');
+
+  Future<bool> writeData(SettingsArgs name, SettingsInfo? data) async{
     try{
       if(name == SettingsArgs.visibility){
-        await supabase.from('profiles').update({'visibility':data}).eq('id', userId);
-        mybox.put('settings.visibility', data);
+        await supabase.from('profiles').update({'visibility':data?.isProfileVisible}).eq('id', userId);
+        await myBox.put('user', data!);
       }
-      else if(name == SettingsArgs.branch){
-        await supabase.from('profiles').update({'branch':data}).eq('id', userId);
-        mybox.put('settings.branch', data);
-      }
-      else if(name == SettingsArgs.sem){
-        await supabase.from('profiles').update({'sem':data}).eq('id', userId);
-        mybox.put('settings.sem', data);
-      }
-      else if(name == SettingsArgs.mess){
-        await supabase.from('profiles').update({'mess':data}).eq('id', userId);
-        mybox.put('settings.mess', data);
-      }
+      // else if(name == SettingsArgs.branch){
+      //   await supabase.from('profiles').update({'branch':data}).eq('id', userId);
+      //   myBox.put('settings.branch', data);
+      // }
+      // else if(name == SettingsArgs.sem){
+      //   await supabase.from('profiles').update({'sem':data}).eq('id', userId);
+      //   myBox.put('settings.sem', data);
+      // }
+      // else if(name == SettingsArgs.mess){
+      //   await supabase.from('profiles').update({'mess':data}).eq('id', userId);
+      //   myBox.put('settings.mess', data);
+      // }
       return true;
     }catch(err){
       return false;
     }
   }
 
-  dynamic getData(SettingsArgs name){
-    final mybox = Hive.box('testBox');
-    late dynamic data = 0;
-    if(name == SettingsArgs.branch){
-      data = mybox.get('settings.branch');
-    }
-    else if(name == SettingsArgs.sem){
-      data = mybox.get('settings.sem');
-    }
-    else if(name == SettingsArgs.mess){
-      data = mybox.get('settings.mess');
-    }
-    return data;
-  }
-
   void clearData() async{
-    final mybox = Hive.box('testBox');
-    mybox.deleteAll({'settings.branch', 'settings.sem', 'settings.mess'});
+    myBox.delete('user');
   }
 
   Future<SettingsInfo> getInitialUser() async {
@@ -72,8 +58,7 @@ class SettingsDatabase extends ChangeNotifier{
         isProfileVisible: data['visibility']
       );
       if(userData.email!=null){
-        final mybox = Hive.box('testBox');
-        mybox.put('user', userData);
+        myBox.put('user', userData);
       }
       return userData;
     }
@@ -81,23 +66,23 @@ class SettingsDatabase extends ChangeNotifier{
 
   Future<SettingsInfo> getUser() async {
     late SettingsInfo userData;
-    late var data;
+    late SettingsInfo? data;
     try {
       // final mybox = await Hive.box('testBox');
-      data = await supabase.from('profiles').select().eq('id', userId).single();
-          //await mybox.get('user');
+      data = //await supabase.from('profiles').select().eq('id', userId).single();
+          await myBox.get('user');
     } catch (error) {
       data = null;
       this.clearData();
     } finally {
       userData = SettingsInfo(
-        email: data['email'],
-        branch: data['branch'],
-        group: data['group'],
-        mess: data['mess'],
-        sem: data['sem'],
-        roll: data['roll'],
-        isProfileVisible: data['visibility']
+        email: data!.email,
+        branch: data.branch,
+        group: data.group,
+        mess: data.mess,
+        sem: data.sem,
+        roll: data.roll,
+        isProfileVisible: data.isProfileVisible
       );
       return userData;
     }

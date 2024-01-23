@@ -222,12 +222,14 @@ class _SettingsScreenState
   }
 
   Future<void> changeVisibility(bool value) async{
-    print(value);
-    bool res = await SettingsDatabase().writeData(SettingsArgs.visibility,  value);
+    userData?.isProfileVisible = value;
+    bool res = await SettingsDatabase().writeData(SettingsArgs.visibility, userData);
     if(res){
       setState(() {
         isProfileVisible = value;
       });
+    }else{
+      userData?.isProfileVisible = !value;
     }
   }
 

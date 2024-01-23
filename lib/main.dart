@@ -1,5 +1,6 @@
 // import 'package:admin/screens/auth/auth_screen.dart';
 import 'package:admin/controllers/notification_controller.dart';
+import 'package:admin/models/settings_model.dart';
 import 'package:admin/screens/auth/auth_screen.dart';
 import 'package:admin/screens/auth/splash_screen.dart';
 import 'package:admin/screens/main_screen.dart';
@@ -12,7 +13,10 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  await Hive.openBox('testBox');
+  // Registering the adapter
+  Hive.registerAdapter(SettingsInfoAdapter());
+  // Opening the box
+  await Hive.openBox<SettingsInfo>('testBox');
 
   const String supabaseUrl = "https://rfgzjoeivlveakoqxyfk.supabase.co";
   const String supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJmZ3pqb2Vpdmx2ZWFrb3F4eWZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDU2NTQzMjUsImV4cCI6MjAyMTIzMDMyNX0.3pSb8cG6jkcvy5R9XC3C9rG43kGkIfvtguLC5rf_eMs";
