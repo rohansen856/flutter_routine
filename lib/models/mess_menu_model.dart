@@ -1,3 +1,19 @@
+class Meal {
+  int? messNo;
+  int? day;
+  String? breakfast;
+  String? lunch;
+  String? dinner;
+
+  Meal({
+    this.messNo,
+    this.day,
+    this.breakfast,
+    this.lunch,
+    this.dinner,
+  });
+}
+
 class MealsListData {
   MealsListData({
     this.imagePath = '',

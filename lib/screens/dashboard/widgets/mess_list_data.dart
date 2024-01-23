@@ -1,3 +1,4 @@
+import 'package:admin/database/mess_database.dart';
 import 'package:admin/models/mess_menu_model.dart';
 import 'package:admin/theme/theme_data.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +18,20 @@ class MealsListView extends StatefulWidget {
 class _MealsListViewState extends State<MealsListView>
     with TickerProviderStateMixin {
   AnimationController? animationController;
-  List<MealsListData> mealsListData = MealsListData.tabIconsList;
+  List<MealsListData> mealsListData = [];//MealsListData.tabIconsList;
+
+  Future<void> func() async{
+    final data = await MessDatabase().getMessData();
+    print('object');
+    print(data.length);
+    setState(() {
+      mealsListData.addAll(data);
+    });
+  }
 
   @override
   void initState() {
+    func();
     animationController = AnimationController(
         duration: const Duration(milliseconds: 2000), vsync: this);
     super.initState();
@@ -40,7 +51,7 @@ class _MealsListViewState extends State<MealsListView>
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 216,
+      height: 250,
       width: double.infinity,
       child: ListView.builder(
         padding: const EdgeInsets.only(

@@ -123,7 +123,7 @@ class _AuthScreenState extends State<AuthScreen> {
                     fontWeight: FontWeight.w400,
                   ),
                   decoration: const InputDecoration(
-                    labelText: 'Email',
+                    labelText: 'Enter Institute Email only',
                     labelStyle: TextStyle(
                       color: Color(0xFF755DC1),
                       fontSize: 15,

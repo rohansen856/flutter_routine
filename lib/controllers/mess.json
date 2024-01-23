@@ -1,0 +1,104 @@
+[
+         {
+            "mess_no": 1,
+            "day": 1,
+            "Breakfast": "Poha Jalebi, Sev, Chopped Onion, Lemon, Sprouts",
+            "Lunch": "Chole-Puri, Arhar Dal Tadka, Plain Rice, Boondi Raita",
+            "Dinner": "Gajar Matar Sabji, Dal Makhani, Fruit Custard, Chapati, Jeera Rice"
+        },
+         {
+            "mess_no": 1,
+            "day": 2,
+            "Breakfast": "Idli-Sambhar, Nariyal Chutney, Sprouts",
+            "Lunch": "Palak-Aloo, Mix-Dal Tadka, Plain Rice, Chapati, Veg Dum Biryani, Veg Raita",
+            "Dinner": "Tawa Veg, Arhar Dal Tadka, Chapati, Fryums"
+        },
+         {
+            "mess_no": 1,
+            "day": 3,
+            "Breakfast": "Upma, Aloo Bhaji, Coconut Chutney",
+            "Lunch": "Kadai Paneer, Malai Kofta, Dal Makhani, Plain Rice, Roti",
+            "Dinner": "Malai Kofta, Jeera Rice, Salad"
+        },
+         {
+            "mess_no": 1,
+            "day": 4,
+            "Breakfast": "Dosa, Sambhar, Nariyal Chutney",
+            "Lunch": "Rajma Masala, Baingan Bharta, Steamed Rice, Roti",
+            "Dinner": "Veg Biryani, Raita, Papad"
+        },
+         {
+            "mess_no": 1,
+            "day": 5,
+            "Breakfast": "Poori-Chole, Pickle",
+            "Lunch": "Pav Bhaji, Dal Tadka, Jeera Rice",
+            "Dinner": "Shahi Paneer, Dal Makhani, Roti, Fried Rice"
+        },
+         {
+            "mess_no": 1,
+            "day": 6,
+            "Breakfast": "Paratha, Aloo Palak, Curd",
+            "Lunch": "Samosa Chaat, Chole Bhature",
+            "Dinner": "Butter Chicken, Dal Makhani, Naan, Raita"
+        },
+         {
+            "mess_no": 1,
+            "day": 7,
+            "Breakfast": "Waffles, Fruit Salad",
+            "Lunch": "Pizza, Garlic Bread, Salad",
+            "Dinner": "Pasta Alfredo, Garlic Bread, Salad"
+        },
+
+        { 
+            "mess_no": 2,
+            "day": 1,
+            "Breakfast": "Bread pakoda, green chutney/sauce, Sprouts.",
+            "Lunch": "Mix Veg Kofta, Arhar Dal Tadka, PlainRice, Chapati, Dahi.",
+            "Dinner": "Methi Aloo, Chana Dal Tadka, Tamarind Rice, Chapati, moong dal Halwa/gajar halwa."
+           },
+           { 
+            "mess_no": 2,
+            "day": 2,
+            "Breakfast": "Pav Bhaji, Chana and sprouts, Banana.",
+            "Lunch": "Aloo-Ghobi-Matar, Razma Sabji, Plain Paratha, Plain Rice, Dahi.",
+            "Dinner": "Paneer Bhurji, Arhar Dal, Jeera Rice, Chapati, fryums."
+           },
+           { 
+            "mess_no": 2,
+            "day": 3,
+            "Breakfast": "Sevaiyan upma/upma(to mato), Nariyal chutney,",
+            "Lunch": "Mix Veg, Masoor Dal, Jeera Rice, Chapati, Dahi- vada",
+            "Dinner": "Soya Beans sabji, Moong Dal Tadka, Plain Rice, Chapati, rasagulla."
+           },
+           { 
+            "mess_no": 2,
+            "day": 4,
+            "Breakfast": "Poha Jalebi- Sev, Chopped Onion, Lemon, Sprouts.",
+            "Lunch": "Chole-Puri, Arhar Dal Tadka, Plain Rice, Boondi Raita.",
+            "Dinner": "Baigan Bharta, Dal Makhni, Fruit Custurd, Chapati, Jeera Rice."
+           },
+           { 
+            "mess_no": 2,
+            "day": 5,
+            "Breakfast": "Idli- Sambhar/Masala idly, Nariyal Chutney, Sprouts.",
+            "Lunch": "Palak-Aloo, Mix-Dal Tadka, Plain Rice, Chapati, Veg raita",
+            "Dinner": "Tawa Veg, Arhar Dal Tadka, Chapati, Veg Dum Biryani, Fryums"
+           },
+           { 
+            "mess_no": 2,
+            "day": 6,
+            "Breakfast": "Aloo Paratha (Onion), Dahi, Green Chutney, Sprouts.",
+            "Lunch": "Gobhi Aalu Matar gravy, Chapati, Boondi Raita, Plain Rice, Rasam.",
+            "Dinner": "Cabbage Matar sabji, Arhar Dal Tadka, Plain Rice, Chapati, Papad, Milk kheer/Sewaiyan."
+           },
+           { 
+            "mess_no": 2,
+            "day": 7,
+            "Breakfast": "Masala Dosa/Utappam, Sambhar, Nariyal Chutney.",
+            "Lunch": "Kadhi Pakoda, Dal, Plain Rice, Chapati, Fryums.",
+            "Dinner": "Palak Paneer/Paneer do pyaza, Chapati, Gobi- Manchurian, Veg Pulao, Gulab-Jamun"
+           }
+
+    ]
+
+    
