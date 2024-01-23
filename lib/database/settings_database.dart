@@ -67,9 +67,10 @@ class SettingsDatabase extends ChangeNotifier{
         branch: data['branch'],
         group: data['group'],
         mess: data['mess'],
-        sem: data['sem']
+        sem: data['sem'],
+        roll: data['roll'],
+        isProfileVisible: data['visibility']
       );
-      
       if(userData.email!=null){
         final mybox = Hive.box('testBox');
         mybox.put('user', userData);
@@ -95,7 +96,8 @@ class SettingsDatabase extends ChangeNotifier{
         group: data['group'],
         mess: data['mess'],
         sem: data['sem'],
-        roll: data['roll']
+        roll: data['roll'],
+        isProfileVisible: data['visibility']
       );
       return userData;
     }

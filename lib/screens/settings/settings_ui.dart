@@ -28,7 +28,7 @@ class _SettingsScreenState
   bool isLoading = false;
 
   late SettingsInfo? userData = null;
-  bool isProfileVisible = true;
+  bool? isProfileVisible = null;
   String? branch = null;
   String? semester = null;
   int? roll = null;
@@ -49,8 +49,8 @@ class _SettingsScreenState
         branch = userData!.branch != null ? userData!.branch.toString():'';
         semester = userData!.sem != null ? userData!.sem.toString():'';
         roll = userData!.roll != null ? userData!.roll:0;
+        isProfileVisible = userData!.isProfileVisible != null ? userData!.isProfileVisible:false;
       });
-      print(isLoading);
     }
   }
 
@@ -116,7 +116,7 @@ class _SettingsScreenState
                   changeVisibility(value);
                 },
                 initialValue: isProfileVisible,
-                leading: Icon(isProfileVisible? Icons.visibility:Icons.visibility_off),
+                leading: Icon(isProfileVisible!=null ? isProfileVisible!? Icons.visibility:Icons.visibility_off:Icons.visibility),
                 title: Text('Profile visibility'),
               ),
             ],

@@ -1,6 +1,7 @@
 class SettingsInfo{
   late String? email, branch, group;
   late int? sem, roll, mess;
+  late bool? isProfileVisible;
 
   SettingsInfo({
     this.email,
@@ -8,6 +9,7 @@ class SettingsInfo{
     this.group,
     this.sem,
     this.roll,
-    this.mess
+    this.mess,
+    this.isProfileVisible
   });
 }

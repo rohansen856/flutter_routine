@@ -1,5 +1,6 @@
 // import 'package:admin/screens/auth/auth_screen.dart';
 import 'package:admin/controllers/notification_controller.dart';
+import 'package:admin/screens/auth/auth_screen.dart';
 import 'package:admin/screens/auth/splash_screen.dart';
 import 'package:admin/screens/main_screen.dart';
 import 'package:admin/theme/theme_data.dart';
@@ -63,7 +64,7 @@ class _MyAppState extends State<MyApp> {
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
         '/': (_) => SplashPage(),
-        // '/login': (_) => AuthScreen(),
+        '/login': (_) => AuthScreen(),
         '/home': (_) => MainScreen()
       },
     );
