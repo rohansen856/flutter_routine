@@ -76,7 +76,6 @@ class _FileInfoCardGridViewState extends State<FileInfoCardGridView> {
 
   Future<void> func() async{
     var dat = await SettingsDatabase().getInitialUser();
-    print(dat.branch.toString().toUpperCase());
     List<Map<String, dynamic>> data = await RoutineDatabase().getRoutine(DateTime.now().weekday, dat.branch.toString().toUpperCase(), dat.sem??0);
 
     List<RoutineInfo> info = [];
