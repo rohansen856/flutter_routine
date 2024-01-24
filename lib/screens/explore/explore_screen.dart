@@ -28,16 +28,20 @@ class AllUsers extends StatefulWidget {
 }
 
 class _AllUsersState extends State<AllUsers> {
-  var users;
+  List users=[];
 
-  void getAllUsers() async {
+  Future<void> getAllUsers() async {
+    List response=[];
     try {
-      var response = await supabase.from('profiles').select().eq('visibility', true);
-
+      response = await supabase.from('profiles').select().eq('visibility', true);
+    } catch (e) {
+      response = [];
+    }
+    finally{
       setState(() {
         users = response;
       });
-    } catch (e) {}
+    }
   }
 
   @override
@@ -59,7 +63,7 @@ class _AllUsersState extends State<AllUsers> {
           child: const Header(),
         ),
       ),
-      body: users != null ? ListView.builder(
+      body: users.length>0 ? ListView.builder(
         itemCount: users.length,
         itemBuilder: (context, index) {
           return ListTile(
