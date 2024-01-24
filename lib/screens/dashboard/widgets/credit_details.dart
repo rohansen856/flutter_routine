@@ -49,7 +49,7 @@ class StorageDetails extends StatelessWidget {
           StorageInfoCard(
             svgSrc: "assets/icons/unknown.svg",
             title: "Humanities",
-            amountOfFiles: "2 cred.",
+            amountOfFiles: "3 cred.",
             numOfFiles: "MA",
           ),
         ],
