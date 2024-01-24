@@ -7,7 +7,7 @@ class MessDatabase extends ChangeNotifier{
   Future<Meal> getMeals({int day=1, int? mess=1}) async{
     late Meal mealData;
     dynamic data = await supabase.from('mess').select().eq('mess_no', 2).eq('day', DateTime.now().weekday).single();
-    print(data);
+
     mealData = Meal(
       messNo: data['mess_no'],
       day: data['day'],
@@ -32,20 +32,20 @@ class MessDatabase extends ChangeNotifier{
         endColor: '#FFB295',
       ),
       MealsListData(
-      imagePath: 'assets/fitness_app/lunch.png',
-      titleTxt: 'Lunch',
-      kacl: 602,
-      meals: <String>[...data.lunch.toString().split(', ')],
-      startColor: '#738AE6',
-      endColor: '#5C5EDD',
+        imagePath: 'assets/fitness_app/lunch.png',
+        titleTxt: 'Lunch',
+        kacl: 602,
+        meals: <String>[...data.lunch.toString().split(', ')],
+        startColor: '#738AE6',
+        endColor: '#5C5EDD',
       ),
       MealsListData(
-      imagePath: 'assets/fitness_app/dinner.png',
-      titleTxt: 'Dinner',
-      kacl: 602,
-      meals: <String>[...data.dinner.toString().split(', ')],
-      startColor: '#6F72CA',
-      endColor: '#1E1466',
+        imagePath: 'assets/fitness_app/dinner.png',
+        titleTxt: 'Dinner',
+        kacl: 602,
+        meals: <String>[...data.dinner.toString().split(', ')],
+        startColor: '#6F72CA',
+        endColor: '#1E1466',
       ),
     ]);
   

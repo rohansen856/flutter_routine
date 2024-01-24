@@ -195,7 +195,7 @@ class NotificationController {
             title: 'Yooo! Welcome to CampusOrbit!',
             body: "A small help from you, but a giant leap for me!",
             bigPicture: 'https://utfs.io/f/d2d26dc2-ca51-4f4b-8019-ca3d391dbaa8-t8r22.png',
-            largeIcon: 'https://storage.googleapis.com/cms-storage-bucket/0dbfcc7a59cd1cf16282.png',
+            largeIcon: 'https://utfs.io/f/52810a5c-8f45-4303-ae69-6d28b7185f07-1xa2z.png',
             //'asset://assets/images/balloons-in-sky.jpg',
             notificationLayout: NotificationLayout.BigPicture,
             payload: {'notificationId': '1234567890'}),
