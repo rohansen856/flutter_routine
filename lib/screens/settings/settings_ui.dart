@@ -163,7 +163,7 @@ class _SettingsScreenState
               ),
               SettingsTile.navigation(
                 onPressed: (_){
-                  _launchUrl("https://github.com/rohansen856");
+                  _launchUrl("https://campusorbit.vercel.app/contributors");
                 },
                 leading: Icon(Icons.collections_bookmark),
                 title: Text('Meet The Developer'),

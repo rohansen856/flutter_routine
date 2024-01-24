@@ -92,6 +92,7 @@ class _FileInfoCardGridViewState extends State<FileInfoCardGridView> {
       ));
     }
     setState(() {
+      info.sort((a,b)=>a.from!.compareTo(b.from!));
       allData = info.length==0?[null]:info;
     });
   }

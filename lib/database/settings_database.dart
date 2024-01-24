@@ -40,7 +40,7 @@ class SettingsDatabase extends ChangeNotifier{
 
   Future<SettingsInfo> getInitialUser() async {
     late SettingsInfo userData;
-    late var data;
+    late dynamic data;
     try {
       data =
           await supabase.from('profiles').select().eq('id', userId).single();

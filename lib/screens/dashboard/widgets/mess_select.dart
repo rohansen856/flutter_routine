@@ -9,7 +9,7 @@ class MessSelectButton extends StatefulWidget {
 }
 
 class _MessSelectButtonState extends State<MessSelectButton> {
-  int selectedValue = list.first;
+  int selectedValue = list.last;
 
   @override
   Widget build(BuildContext context) {
