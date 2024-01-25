@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 
 class MessDatabase extends ChangeNotifier{
 
-  Future<Meal> getMeals({int day=1, int? mess=1}) async{
+  void setMess(int mess){
+    int messNo = mess;
+    notifyListeners();
+  }
+
+  Future<Meal> getMeals(int day, int mess) async{
     late Meal mealData;
-    dynamic data = await supabase.from('mess').select().eq('mess_no', 2).eq('day', DateTime.now().weekday).single();
+    dynamic data = await supabase.from('mess').select().eq('mess_no', mess).eq('day', DateTime.now().weekday).single();
 
     mealData = Meal(
       messNo: data['mess_no'],
@@ -18,9 +23,9 @@ class MessDatabase extends ChangeNotifier{
     return mealData;
   }
 
-  Future<List<MealsListData>> getMessData() async{
+  Future<List<MealsListData>> getMessData(int day, int messNo) async{
     List<MealsListData> allMeals=[];
-    final Meal data = await getMeals(day: 1, mess: 1);
+    final Meal data = await getMeals(day, messNo);
 
     allMeals.addAll([
       MealsListData(

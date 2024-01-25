@@ -21,7 +21,7 @@ class _MealsListViewState extends State<MealsListView>
   List<MealsListData> mealsListData = [];//MealsListData.tabIconsList;
 
   Future<void> func() async{
-    final data = await MessDatabase().getMessData();
+    final data = await MessDatabase().getMessData(DateTime.now().weekday, 2);
     setState(() {
       mealsListData.addAll(data);
     });
