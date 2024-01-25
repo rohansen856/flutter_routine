@@ -58,7 +58,7 @@ class SettingsDatabase extends ChangeNotifier{
         isProfileVisible: data['visibility']
       );
       if(userData.email!=null){
-        await myBox.put('user', userData);
+        try{await myBox.put('user', userData);}catch(e){}
       }
       return userData;
     }
