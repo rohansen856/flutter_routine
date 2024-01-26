@@ -61,9 +61,12 @@ class FileInfoCard extends StatelessWidget {
             info.title!,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
+            style:  info.status=="cancelled"
+            ? TextStyle(decoration:  TextDecoration.lineThrough, decorationThickness: 3.0, decorationColor: Colors.red)
+            :TextStyle(),
           ),
           ProgressLine(
-            color: info.color,
+            color:  info.status=="cancelled"? Colors.red: info.color,
             percentage: info.percentage,
           ),
           Row(

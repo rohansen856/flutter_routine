@@ -19,4 +19,10 @@ class RoutineDatabase extends ChangeNotifier{
     .eq('sem', sem);
     return data;
   }
+
+  Future<List<Map<String, dynamic>>> getModifications() async{
+    List<Map<String, dynamic>> data = await supabase.from('routine_modifications')
+    .select();
+    return data;
+  }
 }

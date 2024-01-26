@@ -3,6 +3,7 @@ import 'package:admin/screens/dashboard/bottomBar/tab_icons.dart';
 import 'package:admin/screens/dashboard/dashboard_screen.dart';
 import 'package:admin/screens/explore/explore_screen.dart';
 import 'package:admin/screens/settings/settings_ui.dart';
+import 'package:admin/test/test.dart';
 import 'package:admin/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 
@@ -120,7 +121,7 @@ class _AppHomeScreenState extends State<AppHomeScreen>
                 }
                 setState(() {
                   tabBody =
-                      ExploreScreen();
+                      TestScreen();
                 });
               });
             } else if (index == 3) {

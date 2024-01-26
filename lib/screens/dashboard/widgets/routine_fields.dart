@@ -77,6 +77,8 @@ class _FileInfoCardGridViewState extends State<FileInfoCardGridView> {
   Future<void> func() async{
     var dat = await SettingsDatabase().getInitialUser();
     List<Map<String, dynamic>> data = await RoutineDatabase().getRoutine(DateTime.now().weekday, dat.branch.toString().toUpperCase(), dat.sem??0);
+    var response = await RoutineDatabase().getModifications();
+    List<String> ids = response.map((obj) => obj["class_id"].toString()).toList();
 
     List<RoutineInfo> info = [];
     for (var i = 0; i < data.length; i++) {
@@ -87,6 +89,7 @@ class _FileInfoCardGridViewState extends State<FileInfoCardGridView> {
         svgSrc: svgLogos[i],
         from: data[i]['from'],
         to: data[i]['to'],
+        status: ids.contains("${data[i]['id'].toString()}")?"cancelled":"",
         color: cardColors[i],
         percentage: 100,
       ));
