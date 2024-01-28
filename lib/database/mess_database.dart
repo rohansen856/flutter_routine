@@ -18,7 +18,8 @@ class MessDatabase extends ChangeNotifier{
       day: data['day'],
       breakfast: data['breakfast'],
       lunch: data['lunch'],
-      dinner: data['dinner']  
+      dinner: data['dinner'],
+      timing: data['timings']
     );
     return mealData;
   }
@@ -31,7 +32,7 @@ class MessDatabase extends ChangeNotifier{
       MealsListData(
         imagePath: 'assets/fitness_app/breakfast.png',
         titleTxt: 'Breakfast',
-        kacl: 525,
+        timing: data.timing["breakfast"].toString()+" am",
         meals: <String>[...data.breakfast.toString().split(', ')],
         startColor: '#FA7D82',
         endColor: '#FFB295',
@@ -39,7 +40,7 @@ class MessDatabase extends ChangeNotifier{
       MealsListData(
         imagePath: 'assets/fitness_app/lunch.png',
         titleTxt: 'Lunch',
-        kacl: 602,
+        timing: data.timing["lunch"].toString()+" pm",
         meals: <String>[...data.lunch.toString().split(', ')],
         startColor: '#738AE6',
         endColor: '#5C5EDD',
@@ -47,13 +48,13 @@ class MessDatabase extends ChangeNotifier{
       MealsListData(
         imagePath: 'assets/fitness_app/dinner.png',
         titleTxt: 'Dinner',
-        kacl: 602,
+        timing: data.timing["dinner"].toString()+" pm",
         meals: <String>[...data.dinner.toString().split(', ')],
         startColor: '#6F72CA',
         endColor: '#1E1466',
       ),
     ]);
-  
+  print(allMeals);
     return allMeals;
   }
 
@@ -61,7 +62,7 @@ class MessDatabase extends ChangeNotifier{
     MealsListData(
       imagePath: 'assets/fitness_app/breakfast.png',
       titleTxt: 'Breakfast',
-      kacl: 525,
+      timing: "",
       meals: <String>['Bread,', 'Peanut butter,', 'Apple'],
       startColor: '#FA7D82',
       endColor: '#FFB295',
@@ -69,7 +70,7 @@ class MessDatabase extends ChangeNotifier{
     MealsListData(
       imagePath: 'assets/fitness_app/lunch.png',
       titleTxt: 'Lunch',
-      kacl: 602,
+      timing: "",
       meals: <String>['Salmon,', 'Mixed veggies,', 'Avocado'],
       startColor: '#738AE6',
       endColor: '#5C5EDD',
@@ -77,15 +78,14 @@ class MessDatabase extends ChangeNotifier{
     // MealsListData(
     //   imagePath: 'assets/fitness_app/snack.png',
     //   titleTxt: 'Snack',
-    //   kacl: 0,
-    //   meals: <String>['Recommend:', '800 kcal'],
+    //   timing: data.timing["breakfast"].toString()    //   meals: <String>['Recommend:', '800 kcal'],
     //   startColor: '#FE95B6',
     //   endColor: '#FF5287',
     // ),
     MealsListData(
       imagePath: 'assets/fitness_app/dinner.png',
       titleTxt: 'Dinner',
-      kacl: 602,
+      timing: "",
       meals: <String>['Recommend:', '703 kcal'],
       startColor: '#6F72CA',
       endColor: '#1E1466',
@@ -93,8 +93,7 @@ class MessDatabase extends ChangeNotifier{
     // MealsListData(
     //   imagePath: 'assets/fitness_app/dinner.png',
     //   titleTxt: 'Dinner',
-    //   kacl: 0,
-    //   meals: <String>['Recommend:', '703 kcal'],
+    //   timing: data.timing["breakfast"].toString()    //   meals: <String>['Recommend:', '703 kcal'],
     //   startColor: '#6F72CA',
     //   endColor: '#1E1466',
     // ),
