@@ -10,13 +10,14 @@ class RoutineDatabase extends ChangeNotifier{
     mybox.put('routine', data);
   }
 
-  Future<List<Map<String, dynamic>>> getRoutine(int day, String branch, int sem) async{
+  Future<List<Map<String, dynamic>>> getRoutine(int day, String branch, int sem, String group) async{
     // final mybox = Hive.box('testBox');
     List<Map<String, dynamic>> data = await supabase.from('routine')
     .select()
     .eq('branch', branch)
     .eq('day', day)
-    .eq('sem', sem);
+    .eq('sem', sem)
+    .eq('group', group);
     return data;
   }
 
