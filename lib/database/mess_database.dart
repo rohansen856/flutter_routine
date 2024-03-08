@@ -32,7 +32,7 @@ class MessDatabase extends ChangeNotifier{
       MealsListData(
         imagePath: 'assets/fitness_app/breakfast.png',
         titleTxt: 'Breakfast',
-        timing: data.timing["breakfast"].toString()+" am",
+        timing: data.timing["breakfast"].toString(),
         meals: <String>[...data.breakfast.toString().split(', ')],
         startColor: '#FA7D82',
         endColor: '#FFB295',
@@ -40,7 +40,7 @@ class MessDatabase extends ChangeNotifier{
       MealsListData(
         imagePath: 'assets/fitness_app/lunch.png',
         titleTxt: 'Lunch',
-        timing: data.timing["lunch"].toString()+" pm",
+        timing: data.timing["lunch"].toString(),
         meals: <String>[...data.lunch.toString().split(', ')],
         startColor: '#738AE6',
         endColor: '#5C5EDD',
@@ -48,7 +48,7 @@ class MessDatabase extends ChangeNotifier{
       MealsListData(
         imagePath: 'assets/fitness_app/dinner.png',
         titleTxt: 'Dinner',
-        timing: data.timing["dinner"].toString()+" pm",
+        timing: data.timing["dinner"].toString(),
         meals: <String>[...data.dinner.toString().split(', ')],
         startColor: '#6F72CA',
         endColor: '#1E1466',

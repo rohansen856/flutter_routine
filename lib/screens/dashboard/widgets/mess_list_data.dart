@@ -179,7 +179,7 @@ class MealsView extends StatelessWidget {
                                         style: TextStyle(
                                           fontFamily: AppTheme.fontName,
                                           fontWeight: FontWeight.w600,
-                                          fontSize: 16,
+                                          fontSize: 15,
                                           letterSpacing: 0.2,
                                           color: AppTheme.white,
                                         ),

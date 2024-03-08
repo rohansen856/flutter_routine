@@ -3,7 +3,7 @@ import 'package:admin/models/settings_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-enum SettingsArgs {branch, sem, mess, visibility}
+enum SettingsArgs {branch, sem, group, mess, visibility}
 
 class SettingsDatabase extends ChangeNotifier{
   final userId = supabase.auth.currentUser!.id;
@@ -16,10 +16,10 @@ class SettingsDatabase extends ChangeNotifier{
         await supabase.from('profiles').update({'visibility':data?.isProfileVisible}).eq('id', userId);
         await myBox.put('user', data!);
       }
-      // else if(name == SettingsArgs.branch){
-      //   await supabase.from('profiles').update({'branch':data}).eq('id', userId);
-      //   myBox.put('settings.branch', data);
-      // }
+      else if(name == SettingsArgs.group){
+        await supabase.from('profiles').update({'group':data?.group}).eq('id', userId);
+        myBox.put('settings.branch', data!);
+      }
       // else if(name == SettingsArgs.sem){
       //   await supabase.from('profiles').update({'sem':data}).eq('id', userId);
       //   myBox.put('settings.sem', data);
@@ -58,6 +58,7 @@ class SettingsDatabase extends ChangeNotifier{
         isProfileVisible: data['visibility']
       );
       if(userData.email!=null){
+        print(userData.group);
         try{await myBox.put('user', userData);}catch(e){}
       }
       return userData;

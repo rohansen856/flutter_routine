@@ -32,6 +32,7 @@ class _SettingsScreenState
   String? branch = null;
   String? semester = null;
   int? roll = null;
+  String? group = null;
 
   Future<void> func() async{
     setState(() {
@@ -49,6 +50,7 @@ class _SettingsScreenState
         branch = userData!.branch != null ? userData!.branch.toString():'';
         semester = userData!.sem != null ? userData!.sem.toString():'';
         roll = userData!.roll != null ? userData!.roll:0;
+        group = userData!.group !=null ? userData!.group: '';
         isProfileVisible = userData!.isProfileVisible != null ? userData!.isProfileVisible:false;
       });
     }
@@ -150,6 +152,15 @@ class _SettingsScreenState
                   ?TextLoadingAnimation()
                   :Text(roll.toString(), style: TextStyle(color: AppTheme.deactivatedText),),
                 enabled: session != null,
+              ),
+              SettingsTile.navigation(
+                onPressed: (_){groupSelectDialogue(context);},
+                leading: Icon(Icons.group),
+                title: Text('Group',), 
+                trailing: isLoading
+                  ?TextLoadingAnimation()
+                  :Text(group??'', style: TextStyle(color: AppTheme.deactivatedText),),
+                enabled: session != null,
                 description: Text('Your verified student data'),
               ),
             ],
@@ -233,37 +244,39 @@ class _SettingsScreenState
     }
   }
 
-  // void branchSelectDialogue(BuildContext context) {
-  //   List<String> branches = ['CS', 'EC', 'ME', 'SM', 'DS'];
-  //   List<Widget> widList = [];
+  void groupSelectDialogue(BuildContext context) {
+    List<String> branches = ['A', 'B', 'C', 'D', 'E'];
+    List<Widget> widList = [];
 
-  //   branches.forEach((el)=>widList.add(
-  //       TextButton(
-  //             onPressed: () async{
-  //               // Close the dialog
-  //               bool res = await SettingsDatabase().writeData(SettingsArgs.branch, el);
-  //               if(res){
-  //                 setState(() {
-  //                   branch = el;
-  //                 });
-  //               }
-  //               Navigator.of(context).pop();
-  //             },
-  //             child: Text(el),
-  //           ),
-  //     )
-  //   );
+    branches.forEach((el)=>widList.add(
+        TextButton(
+              onPressed: () async{
+                userData?.group = el;
+                bool res = await SettingsDatabase().writeData(SettingsArgs.group, userData);
+                if(res){
+                  setState(() {
+                    group = el;
+                  });
+                }else{
+                  userData?.group = '';
+                }
+                Navigator.of(context).pop();
+              },
+              child: Text(el),
+            ),
+      )
+    );
 
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         actions: widList,
-  //         actionsAlignment: MainAxisAlignment.center,
-  //       );
-  //     },
-  //   );
-  // }
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          actions: widList,
+          actionsAlignment: MainAxisAlignment.center,
+        );
+      },
+    );
+  }
 
   // void semSelectDialogue(BuildContext context) {
   //   List<int> sems = [1,2,3,4,5,6,7,8];
