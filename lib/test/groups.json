@@ -1,3 +1,12 @@
-{
-    
-}
+[
+    {
+        "sem": 2,
+        "branch":"bcs",
+        "subjects": [
+            {"name": "Mathematics 2", "credits": 4},
+            {"name": "Physics 2", "credits": 4},
+            {"name": "Engineering Graphics", "credits": 4},
+            {"name": "Humanities", "credits": 3}
+        ]
+    }
+]

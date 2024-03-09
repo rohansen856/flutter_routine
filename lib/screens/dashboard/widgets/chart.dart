@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 class Chart extends StatelessWidget {
   const Chart({
     Key? key,
+    required this.totalCredits,
   }) : super(key: key);
+
+  final int totalCredits;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,7 @@ class Chart extends StatelessWidget {
               children: [
                 SizedBox(height: AppTheme.defaultPadding),
                 Text(
-                  "16",
+                  totalCredits.toString(),
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
